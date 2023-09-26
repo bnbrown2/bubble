@@ -29,7 +29,7 @@ app.get('/', (req, res) => {
 
 app.get('/:username', async (req, res) => {
   try {
-    const username = parseInt(req.params.username)
+    const username = req.params.username
     console.log(`${username} entered in for username`)
     const bio = await getUser(username)
     res.send(bio)
