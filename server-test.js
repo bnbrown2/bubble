@@ -19,7 +19,7 @@ const pool = mysql.createPool({
 
 // Recieves username and returns that users bio
 async function getUser(username) {
-  const [bio] = await pool.promise().query("SELECT bio FROM User WHERE username = ?", [
+  const [bio] = await pool.promise().query("SELECT bio FROM accounts WHERE username = ?", [
     username,
   ])
   return bio[0]
@@ -49,7 +49,7 @@ app.put('/:username', async (req, res) => {
     const newBio = req.body.bio; // Assuming the request contains a JSON body with a "bio" property
 
     // Update the user's bio in the database
-    await pool.promise().query("UPDATE User SET bio = ? WHERE username = ?", [
+    await pool.promise().query("UPDATE accounts SET bio = ? WHERE username = ?", [
       newBio,
       username,
     ]);
