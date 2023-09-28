@@ -28,12 +28,12 @@ async function getUser(username) {
   const [bio] = await pool.promise().query("SELECT bio FROM accounts WHERE username = ?", [
     username,
   ])
-  return bio[0][0]
+  return bio[0]
 }
 
 
 // Applying routes
-app.use('/:username', userRoutes);
+app.use('/account/:username', userRoutes);
 
 
 // Default response
