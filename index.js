@@ -33,7 +33,7 @@ async function getUser(username) {
 
 
 // Applying routes
-app.use('/account/:username', userRoutes);
+app.use('/account/:username', accounts);
 
 
 // Default response
