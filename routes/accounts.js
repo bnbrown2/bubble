@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 // Way to get bio by inputting username in URL
-router.get('/:username', async (req, res) => {
+router.get('/account/:username', async (req, res) => {
     try {
       const username = req.params.username
       console.log(`${username} entered in for username`)
