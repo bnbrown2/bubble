@@ -28,7 +28,7 @@ async function getUser(username) {
   const [bio] = await pool.promise().query("SELECT bio FROM accounts WHERE username = ?", [
     username,
   ])
-  return bio[0]
+  return bio[0][0]
 }
 
 
