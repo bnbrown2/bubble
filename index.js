@@ -35,6 +35,18 @@ async function getUser(username) {
 // Applying routes
 app.use('/account/:username', accounts);
 
+// Way to get bio by inputting username in URL
+router.get('/account/:username', async (req, res) => {
+  try {
+    const username = req.params.username
+    console.log(`${username} entered in for username`)
+    const bio = await getUser(username)
+    res.send(bio)
+  } catch (error) {
+    res.send(error)
+  }
+})
+
 
 // Default response
 app.get('/', (req, res) => {
