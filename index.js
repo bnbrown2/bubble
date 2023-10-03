@@ -41,7 +41,9 @@ app.get('/account/:username', async (req, res) => {
     const username = req.params.username
     console.log(`${username} entered in for username`)
     const bio = await getUser(username)
-    res.send(bio[0])
+    res.send(bio)
+    res.setHeader('Content-Type', 'text/html')
+    res.end(`account: ${username}`)
   } catch (error) {
     res.send(error)
   }
