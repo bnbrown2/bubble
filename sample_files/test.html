@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Request Example</title>
+</head>
+<body>
+    <h1>API Response:</h1>
+    <pre id="apiResponse"></pre>
+
+    <script>
+        // Define the URL of the API you want to request data from
+        const apiUrl = 'http://35.88.138.97:8080/account/bubble';
+
+        // Select the <pre> element to display the API response
+        const apiResponseElement = document.getElementById('apiResponse');
+
+        // Make a GET request to the API using the fetch function
+        fetch(apiUrl)
+            .then(response => {
+                // Check if the response status code is in the 200 range (successful)
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                // Parse the response body as JSON
+                return response.json();
+            })
+            .then(data => {
+                // Display the JSON data received from the API
+                apiResponseElement.textContent = JSON.stringify(data, null, 2);
+            })
+            .catch(error => {
+                // Handle any errors that occurred during the fetch
+                apiResponseElement.textContent = 'Fetch error: ' + error.message;
+            });
+    </script>
+</body>
+</html>
