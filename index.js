@@ -45,8 +45,13 @@ app.get('/account/:username', async (req, res) => {
 
   // This function should take in the username and return name, username, bio, profile picture, maybe more in future.
   // This represents viewing an account
-  console.log(req);
-  res.end(req);
+  try {
+    const username = req.params.username
+    res.send(`The username from the path is ${username}`)
+    console.log(`The username from the path is ${username}`)
+  } catch (error) {
+    res.send(error);
+  }
 })
 
 
