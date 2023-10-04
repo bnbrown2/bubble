@@ -47,7 +47,7 @@ app.get('/account/:username', async (req, res) => {
 
 // Default response
 app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'sample_file', 'test.html'))
+  res.sendFile(path.join(__dirname, 'sample_files', 'test.html'))
 })
 
 
