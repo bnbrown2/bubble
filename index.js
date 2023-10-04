@@ -32,7 +32,7 @@ async function getUser(username) {
 
 // Way to get bio by inputting username in URL
 app.get('/account/:username', async (req, res) => {
-  try {
+  /*try {
     const username = req.params.username
     console.log(`${username} entered in for username`)
     const bio = await getUser(username)
@@ -41,7 +41,12 @@ app.get('/account/:username', async (req, res) => {
     res.end(`account: ${username}`)
   } catch (error) {
     res.send(error)
-  }
+  }*/
+
+  // This function should take in the username and return name, username, bio, profile picture, maybe more in future.
+  // This represents viewing an account
+  console.log(req);
+  res.end(req);
 })
 
 
