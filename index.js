@@ -5,13 +5,13 @@ const mysql = require('mysql2')
 const bodyParser = require('body-parser')
 const path = require('path')
 
-// Setting up express
+// Setting up app
 const app = express()
 app.use(morgan(":method :url :status :res[content-length] - :response-time ms"))
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'sample_files')))
 
-// Setting up mysql
+// Setting up mysql pool
 const pool = mysql.createPool({
   host: process.env.MYSQL_HOST || 'localhost',
   user: process.env.MYSQL_USER || 'root',
@@ -19,48 +19,13 @@ const pool = mysql.createPool({
   database: process.env.MYSQL_DATABASE || 'bubbleDB',
 })
 
-
-
-
-// Recieves username and returns that users bio
-async function getUser(username) {
-  const [bio] = await pool.promise().query("SELECT bio FROM accounts WHERE username = ?", [
-    username,
-  ])
-  return bio[0]
-}
-
-// Way to get bio by inputting username in URL
-app.get('/account/:username', async (req, res) => {
-  /*try {
-    const username = req.params.username
-    console.log(`${username} entered in for username`)
-    const bio = await getUser(username)
-    res.setHeader('Content-Type', 'text/html')
-    res.send(bio)
-    res.end(`account: ${username}`)
-  } catch (error) {
-    res.send(error)
-  }*/
-
-  // This function should take in the username and return name, username, bio, profile picture, maybe more in future.
-  // This represents viewing an account
-  try {
-    const username = req.params.username
-    res.send(`The username from the path is ${username}`)
-    console.log(`The username from the path is ${username}`)
-  } catch (error) {
-    res.send(error);
-  }
-})
-
-
-// Default response
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'sample_files', 'test.html'))
-})
-
-
+// Import and use routes
+const accountRouter = require('./routes/account')
+const loginRouter = require('./routes/login')
+const registerRouter = require('./routes/register')
+app.use('/account', accountRouter)
+app.use('/login', loginRouter)
+app.use('/register', registerRouter)
 
 // Start the server
 const port = process.env.PORT || 8080

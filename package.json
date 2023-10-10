@@ -4,7 +4,7 @@
   "description": "The only omni-directional scrolling social media you'll ever need",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "devStart": "nodemon index.js"
   },
   "keywords": [],
   "author": "",
@@ -14,5 +14,8 @@
     "morgan": "^1.10.0",
     "mysql2": "^3.6.1",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.1"
   }
 }
