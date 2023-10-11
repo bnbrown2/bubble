@@ -10,16 +10,16 @@
 // Import required modules.
 const express = require('express')
 const morgan = require('morgan')
-const mysql = require('mysql2')
+const mariadb = require('mariadb')
 const bodyParser = require('body-parser')
 const path = require('path')
 
 // Setting up mysql pool. You can set these values in the commend line or use the default values.
-const connectionPool = mysql.createPool({
-  host: process.env.MYSQL_HOST || 'localhost',
-  user: process.env.MYSQL_USER || 'root',
-  password: process.env.MYSQL_PASSWORD || 'MyNewPass1!',
-  database: process.env.MYSQL_DATABASE || 'bubbleDB',
+const pool = mariadb.createPool({
+  host: process.env.MARIADB_HOST || 'bubble.cdqqssnxe7h2.us-west-2.rds.amazonaws.com',
+  user: process.env.MARIADB_USER || 'admin',
+  password: process.env.MARIADB_PASSWORD || 'twd2mBqEVFVTNktqBYpY',
+  database: process.env.MARIADB_DATABASE || 'bubble',
 })
 
 // Setting up app. Also adding anything app needs access to.
@@ -30,7 +30,7 @@ app.use(express.static(path.join(__dirname, 'sample_files')))
 app.use(express.static("public"))
 app.use(express.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
-app.set('mysqlPool', connectionPool)
+app.set('mariadbPool', pool)
 
 // Import and use routes. Routes are all in the routes folder.
 const accountRouter = require('./routes/account')

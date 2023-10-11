@@ -17,8 +17,11 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         if (!username || !password) {
             return res.status(400).json({ error: 'Both username and password are required' });
         }
-      
+
+        const connectionPool = req.app.get('mariadbPool')
         const connection = await connectionPool.getConnection()
+        console.log('Database connection acquired!')
+
         const [rows, fields] = await connection.execute(
             'SELECT * FROM users WHERE username = ? AND password = ?',
             [username, password]
