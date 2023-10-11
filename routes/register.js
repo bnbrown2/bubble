@@ -15,8 +15,8 @@ router
         console.log('Database connection acquired!')
 
         // Check if username and email are unique
-        const [usernameRows] = await connection.query('SELECT * FROM users WHERE username = ?', [username])
-        const [emailRows] = await connection.query('SELECT * FROM users WHERE email = ?', [email])
+        const [usernameRows] = await connection.query('SELECT * FROM accounts WHERE username = ?', [username])
+        const [emailRows] = await connection.query('SELECT * FROM accounts WHERE email = ?', [email])
 
         if (usernameRows.length > 0) {
             res.status(400).json({ error: 'Username is already taken' })
@@ -31,7 +31,7 @@ router
 
         // Insert the new user into the database
         const result = await connection.query(
-            'INSERT INTO users (username, password, email, name) VALUES (?, ?, ?, ?)',
+            'INSERT INTO accounts (username, password, email, name) VALUES (?, ?, ?, ?)',
             [username, hashedPassword, email, name]
         )
 
