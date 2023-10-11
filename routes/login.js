@@ -32,8 +32,8 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         connection.release()
         console.log('Database disconnected (gracefully)')
 
-        console.log(rows[0])
-        
+        console.log(rows.password)
+
       
         const user = rows && rows.length > 0 ? rows[0] : null;
         console.log(user)
