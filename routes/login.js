@@ -23,18 +23,24 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         console.log('Database connection acquired!')
 
         const [rows, fields] = await connection.execute(
-            'SELECT * FROM accounts WHERE username = ? AND password = ?',
-            [username, password]
+            'SELECT * FROM accounts WHERE username = ?',
+            [username]
         )
       
         connection.release()
+        console.log('Database disconnected')
       
         const user = rows[0]
         if (user) {
-            const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' })
-            return res.status(200).json({ token })
+            const isPasswordMatch = await bcrypt.compare(password, user.password)
+            if (isPasswordMatch) {
+                const token = jwt.sign({ username }, secretKey, { expiresIn: '1h' })
+                return res.status(200).json({ token })
+            } else {
+                return res.status(401).json({ error: 'Invalid password' })
+            }
         } else {
-            return res.status(401).json({ error: 'Invalid username or password' })
+            return res.status(401).json({ error: 'Invalid username' })
         }
     } catch (error) {
         console.error('Error authenticating user:', error)
