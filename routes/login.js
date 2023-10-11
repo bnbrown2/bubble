@@ -30,7 +30,7 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         connection.release()
         console.log('Database disconnected')
       
-        const user = rows[0]
+        const user = rows[0] || 0
         if (user) {
             const isPasswordMatch = await bcrypt.compare(password, user.password)
             if (isPasswordMatch) {
