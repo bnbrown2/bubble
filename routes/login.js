@@ -35,7 +35,7 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         console.log(rows.password)
 
       
-        const user = rows && rows.length > 0 ? rows[0] : null;
+        const user = rows ? rows : null;
         console.log(user)
         if (user) {
             const isPasswordMatch = await bcrypt.compare(password, user.password)
