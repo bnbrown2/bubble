@@ -23,12 +23,12 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         console.log('Database connection acquired!')
 
         const [rows, fields] = await connection.execute(
-            'SELECT * FROM accounts WHERE username = ?',
-            [username]
+            'SELECT * FROM accounts '//WHERE username = ?',
+            //[username]
         )
       
         connection.release()
-        console.log('Database disconnected')
+        console.log('Database disconnected (gracefully)')
       
         const user = rows && rows.length > 0 ? rows[0] : null;
         console.log(user)
