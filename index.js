@@ -40,6 +40,10 @@ app.use('/account', accountRouter)
 app.use('/login', loginRouter)
 app.use('/register', registerRouter)
 
+app.get('/', (req, res) => {
+  res.redirect('/login')
+})
+
 // Start the server. You can set the port in the command line or use the default value.
 const port = process.env.PORT || 8080
 app.listen(port, () => console.log(`Listening on port ${port}`))
