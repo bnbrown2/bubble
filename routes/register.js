@@ -31,8 +31,8 @@ router
 
         // Insert the new user into the database
         const result = await connection.query(
-            'INSERT INTO accounts (username, password, email, name) VALUES (?, ?, ?, ?)',
-            [username, hashedPassword, email, name]
+            'INSERT INTO accounts (username, password, email, name, salt) VALUES (?, ?, ?, ?, ?)',
+            [username, hashedPassword, email, name, 'a']
         )
 
         // Check if the user was successfully inserted
