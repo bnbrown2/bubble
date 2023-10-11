@@ -26,6 +26,8 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
             'SELECT * FROM accounts '//WHERE username = ?',
             //[username]
         )
+        console.log(rows)
+        console.log(fields)
       
         connection.release()
         console.log('Database disconnected (gracefully)')
