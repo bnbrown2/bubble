@@ -23,8 +23,8 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         console.log('Database connection acquired!')
 
         const [rows, fields] = await connection.execute(
-            'SELECT * FROM accounts '//WHERE username = ?',
-            //[username]
+            'SELECT * FROM accounts WHERE username = ?',
+            [username]
         )
         console.log('rows:', rows)
         console.log('fields:', fields)
