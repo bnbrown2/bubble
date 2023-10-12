@@ -29,8 +29,8 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         )
       
         connection.release()
-        timestamp = new Date().toISOString()
-        console.log(`[${timestamp}] Database disconnected (gracefully)`)
+        const timestamp2 = new Date().toISOString()
+        console.log(`[${timestamp2}] Database disconnected (gracefully)`)
       
         const user = rows ? rows : null;
         if (user) {
