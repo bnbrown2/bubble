@@ -19,16 +19,14 @@ router
         const [emailRows] = await connection.query('SELECT * FROM accounts WHERE email = ?', [email])
 
         if (usernameRows) {
-            console.log(usernameRows.length)
+            console.log(usernameRows)
             res.status(400).json({ error: 'Username is already taken' })
             connection.release()
-            return
         }
 
-        if (emailRows) {
+        if (emailRows && emailRows.length > 0) {
             res.status(400).json({ error: 'Email is already in use' })
             connection.release()
-            return
         }
 
         // If both username and email are unique, hash the password
