@@ -19,6 +19,7 @@ router
         const [emailRows] = await connection.query('SELECT * FROM accounts WHERE email = ?', [email])
 
         if (usernameRows) {
+            console.log(usernameRows.length)
             res.status(400).json({ error: 'Username is already taken' })
             connection.release()
             return
