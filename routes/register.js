@@ -20,6 +20,7 @@ router
 
         if (usernameRows) {
             console.log(usernameRows)
+            console.log(usernameRows.length)
             res.status(400).json({ error: 'Username is already taken' })
             connection.release()
             return
