@@ -22,7 +22,7 @@ router
             res.status(400).json({ error: 'Username is already taken' })
         }
 
-        if (emailRows && emailRows.length > 0) {
+        if (emailRows) {
             res.status(400).json({ error: 'Email is already in use' })
         }
 
