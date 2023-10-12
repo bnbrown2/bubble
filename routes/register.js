@@ -19,14 +19,13 @@ router
         const [emailRows] = await connection.query('SELECT * FROM accounts WHERE email = ?', [email])
 
         if (usernameRows) {
-            console.log(usernameRows)
-            console.log(usernameRows.length)
             res.status(400).json({ error: 'Username is already taken' })
             connection.release()
             return
         }
 
-        if (emailRows && emailRows.length > 0) {
+        if (emailRows) {
+            console.log(emailRows)
             res.status(400).json({ error: 'Email is already in use' })
             connection.release()
             return
