@@ -20,7 +20,8 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
 
         const connectionPool = req.app.get('mariadbPool')
         const connection = await connectionPool.getConnection()
-        console.log('Database connection acquired!')
+        const timestamp = new Date().toISOString()
+        console.log(`[${timestamp}] Database connection acquired!`)
 
         const [rows, fields] = await connection.execute(
             'SELECT password FROM accounts WHERE username = ?',
@@ -31,7 +32,6 @@ router.route('/')   // Note: remove the .get when we pair the api with the app
         console.log('Database disconnected (gracefully)')
       
         const user = rows ? rows : null;
-        console.log(user)
         if (user) {
             const isPasswordMatch = await bcrypt.compare(password, user.password)
             if (isPasswordMatch) {
