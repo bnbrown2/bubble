@@ -7,7 +7,7 @@ const secretKey = config.secretKey
 
 router
     .route('/:username')
-    .get((req, res) => {
+    .get( async (req, res) => {
         const { username } = req.params
 
         if (!username) {
