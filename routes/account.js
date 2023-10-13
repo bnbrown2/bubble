@@ -33,25 +33,33 @@ router
                 return res.status(404).json({ error: 'Account does not exist'})
             }
 
-            const account = rows[0]
+            const account = rows
 
-            const token = req.headers.authorization.split(' ')[1]
 
-            jwt.verify(token, secretKey, (err, decoded) => {
-                if (err) {
-                    return res.status(401).json({ error: 'Invalid token '})
+            let editable = false
+            const token = req.headers.authorization
+
+            if (token) {
+                const tokenParts = token.split(' ')
+
+                if (tokenParts.length === 2 && tokenParts[0] === 'Bearer') {
+                    const userToken = tokenParts[1]
+
+                    jwt.verify(userToken, secretKey, (err, decoded) => {
+                        if (!err && decoded.username === username) {
+                          editable = true;
+                        }
+                      })
                 }
+            }
 
-                const editable = decoded.username === username
-
-                res.status(200).json({
-                    name: accounts[username].name,
-                    username: accounts[username].username,
-                    profile_picture: accounts[username].profile_picture,
-                    bio: accounts[username].bio,
-                    account_created: accounts[username].account_created,
-                    editable: editable
-                })
+            res.status(200).json({
+                name: account.name,
+                username: account.username,
+                profile_picture: account.profile_picture,
+                bio: account.bio,
+                account_created: account.account_created,
+                editable: editable
             })
         } catch (error) {
             console.error('Error fetching account:', error)
