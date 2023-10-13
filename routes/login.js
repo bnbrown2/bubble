@@ -4,7 +4,8 @@ const bcrypt = require('bcrypt')
 const router = express.Router()
 
 // SHHHHHH dont tell anyone the secret password
-const secretKey = 'purpleBanana'
+const config = require('./config')
+const secretKey = config.secretKey
 
 router.route('/')   // Note: remove the .get when we pair the api with the app
 .get( (req, res) => {
