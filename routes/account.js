@@ -29,7 +29,7 @@ router
             const timestamp2 = new Date().toISOString()
             console.log(`[${timestamp2}] Database disconnected (gracefully)`)
 
-            if (rows.length === 0) {
+            if (!rows) {
                 return res.status(404).json({ error: 'Account does not exist'})
             }
 
