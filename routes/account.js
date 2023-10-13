@@ -2,7 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const router = express.Router()
 
-const config = require('./config.js')
+const config = require('../config')
 const secretKey = config.secretKey
 
 router
