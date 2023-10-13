@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Account Details</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+    }
+    .account-details {
+      max-width: 500px;
+      margin: 0 auto;
+      border: 1px solid #ccc;
+      padding: 20px;
+      border-radius: 10px;
+      background-color: #f9f9f9;
+    }
+    .button-container {
+      text-align: right;
+      margin-top: 10px;
+    }
+    .edit-button {
+      padding: 10px 20px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .edit-button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <div class="account-details">
+    <h1>Account Details</h1>
+    <ul>
+      <li><strong>Name:</strong> <%= name %></li>
+      <li><strong>Username:</strong> <%= username %></li>
+      <li><strong>Profile Picture:</strong> <%= profile_picture %></li>
+      <li><strong>Bio:</strong> <%= bio %></li>
+      <li><strong>Account Created:</strong> <%= account_created %></li>
+      <li><strong>Editable:</strong> <%= editable ? 'Yes' : 'No' %></li>
+    </ul>
+
+    <% if (editable) { %>
+      <div class="button-container">
+        <button class="edit-button">Edit Account</button>
+      </div>
+    <% } %>
+  </div>
+</body>
+</html>
