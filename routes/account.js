@@ -87,7 +87,7 @@ router
                 'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
                 [newName, newBio, username]
             )
-            console.log(result)
+            console.log('here is the result:', result)
 
             connection.release()
             const timestamp2 = new Date().toISOString()
