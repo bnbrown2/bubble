@@ -47,7 +47,7 @@
 
     <div id="editForm" style="display: none;">
       <h2>Edit Account</h2>
-      <form id="accountForm" action="#" method="put">
+      <form id="accountForm">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="newName" value="<%= name %>"><br>
         <label for="bio">Bio:</label><br>
@@ -61,6 +61,37 @@
         <button class="edit-button" onclick="showEditForm('<%= username %>')">Edit Account</button>
       </div>
     <% } %>
+
+    <script>
+      function updateAccount(username) {
+        const name = document.getElementById("name").value;
+        const bio = document.getElementById("bio").value;
+    
+        const data = {
+          newBio: bio,
+          newName: name
+        };
+    
+        try {
+          fetch(`/account/${username}`, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+          })
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Error updating account');
+            }
+            console.log('Account updated successfully!');
+          })
+          .catch(error => console.error('Error updating account:', error));
+        } catch (error) {
+          console.error('Error updating account:', error);
+        }
+      }
+    </script>
 
     <script>
       function showEditForm(username) {
