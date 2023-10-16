@@ -47,7 +47,7 @@
 
     <div id="editForm" style="display: none;">
       <h2>Edit Account</h2>
-      <form id="accountForm">
+      <form id="accountForm" onsubmit="updateAccount('<%= username %>')">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="newName" value="<%= name %>"><br>
         <label for="bio">Bio:</label><br>
