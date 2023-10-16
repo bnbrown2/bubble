@@ -20,7 +20,7 @@ router
             const timestamp = new Date().toISOString()
             console.log(`[${timestamp}] Database connection acquired!`)
     
-            const [rows, fields] = await connection.execute(
+            const [rows] = await connection.execute(
                 'SELECT * FROM accounts WHERE username = ?',
                 [username]
             )
@@ -69,8 +69,41 @@ router
             console.error('Error fetching account:', error)
             res.status(500).json({ error: 'Internal server error'})
         }
-    }).put((req, res) => {
-        res.send(`Update User With username ${req.params.username}`)})
+    }).put( async (req, res) => {
+        const { username } = req.params
+        const { newBio, newName } = req.body
+
+        if (!username) {
+            return res.status(400).json({ error: 'Username not provided' })
+        }
+
+        try {
+            const connectionPool = req.app.get('mariadbPool')
+            const connection = await connectionPool.getConnection()
+            const timestamp = new Date().toISOString()
+            console.log(`[${timestamp}] Database connection acquired!`)
+    
+            const [result] = await connection.execute(
+                'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
+                [newName, newBio, username]
+            )
+
+            connection.release()
+            const timestamp2 = new Date().toISOString()
+            console.log(`[${timestamp2}] Database disconnected (gracefully)`)
+
+            const affectedRows = result ? result.affectedRow : 0
+
+            if (affectedRows > 0) {
+                res.status(200).json({ message: `Updated ${affectedRows} row`})
+            } else {
+                res.status(404).json({ error: 'No matching rows found for update'})
+            }
+        } catch(error) {
+            console.error('Error updating account:', error)
+            res.status(500).json({ error: 'Internal server error'})
+        }
+    })
 
 
 module.exports = router
