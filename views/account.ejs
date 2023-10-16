@@ -47,12 +47,12 @@
 
     <div id="editForm" style="display: none;">
       <h2>Edit Account</h2>
-      <form id="accountForm">
+      <form id="accountForm" action="#" method="put">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="name" value="<%= name %>"><br>
+        <input type="text" id="name" name="newName" value="<%= name %>"><br>
         <label for="bio">Bio:</label><br>
-        <textarea id="bio" name="bio"><%= bio %></textarea><br><br>
-        <button type="button" onclick="updateAccount('<%= username %>')">Update Account</button>
+        <textarea id="bio" name="newBio"><%= bio %></textarea><br><br>
+        <button type="submit">Update Account</button>>
       </form>
     </div>
 
@@ -65,34 +65,16 @@
     <script>
       function showEditForm(username) {
         const editForm = document.getElementById("editForm");
+        const accountForm = document.getElementById("accountForm");
+
+        // Construct the dynamic URL based on the username
+        const dynamicAction = `/account/${username}`;
+
+        // Update the form's action attribute
+        accountForm.action = dynamicAction;
 
         // Show the form
         editForm.style.display = "block";
-      }
-
-      async function updateAccount(username) {
-        const name = document.getElementById("name").value;
-        const bio = document.getElementById("bio").value;
-
-        const formData = new FormData();
-        formData.append("name", name);
-        formData.append("bio", bio);
-
-        try {
-          const response = await fetch(`/account/${username}`, {
-            method: 'PUT',
-            body: formData
-          });
-
-          if (!response.ok) {
-            throw new Error('Error updating account');
-          }
-
-          // Handle success, e.g., redirect to a new page or display a success message
-          console.log('Account updated successfully!');
-        } catch (error) {
-          console.error('Error updating account:', error);
-        }
       }
     </script>
   </div>
