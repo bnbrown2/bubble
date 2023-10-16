@@ -45,11 +45,38 @@
     </ul>
     <h2>Note the server is returning HTML right now. If you want it to return just the JSON, ask Kai or Ben.</h2>
 
-    <!--<% if (!editable) { %>-->
+    <div id="editForm" style="display: none;">
+      <h2>Edit Account</h2>
+      <form id="accountForm" action="#" method="post">
+        <label for="name">Name:</label><br>
+        <input type="text" id="name" name="name" value="<%= name %>"><br>
+        <label for="bio">Bio:</label><br>
+        <textarea id="bio" name="bio"><%= bio %></textarea><br><br>
+        <input type="submit" value="Submit">
+      </form>
+    </div>
+
+    <% if (!editable) { %>
       <div class="button-container">
-        <button class="edit-button">Edit Account</button>
+        <button class="edit-button" onclick="showEditForm('<%= username %>')">Edit Account</button>
       </div>
     <% } %>
+
+    <script>
+      function showEditForm(username) {
+        const editForm = document.getElementById("editForm");
+        const accountForm = document.getElementById("accountForm");
+
+        // Construct the dynamic URL based on the username
+        const dynamicAction = `/account/${username}`;
+
+        // Update the form's action attribute
+        accountForm.action = dynamicAction;
+
+        // Show the form
+        editForm.style.display = "block";
+      }
+    </script>
   </div>
 </body>
 </html>
