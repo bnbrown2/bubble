@@ -36,20 +36,20 @@
   <div class="account-details">
     <h1>Account Details</h1>
     <ul>
-      <li><strong>Name:</strong> <%= name %></li>
-      <li><strong>Username:</strong> <%= username %></li>
-      <li><strong>Profile Picture:</strong> <%= profile_picture %></li>
+      <li><strong>Name:</strong> <%= locals.name %></li>
+      <li><strong>Username:</strong> <%= locals.username %></li>
+      <li><strong>Profile Picture:</strong> <%= locals.profile_picture %></li>
       <li><strong>Bio:</strong> <%= bio %></li>
-      <li><strong>Account Created:</strong> <%= account_created %></li>
-      <li><strong>Editable:</strong> <%= editable ? 'Yes' : 'No' %></li>
+      <li><strong>Account Created:</strong> <%= locals.account_created %></li>
+      <li><strong>Editable:</strong> <%= locals.editable ? 'Yes' : 'No' %></li>
     </ul>
     <h2>Note the server is returning HTML right now. If you want it to return just the JSON, ask Kai or Ben.</h2>
 
     <div id="editForm" style="display: none;">
       <h2>Edit Account</h2>
-      <form id="accountForm" onsubmit="updateAccount('<%= username %>')">
+      <form id="accountForm" onsubmit="updateAccount('<%= locals.username %>')">
         <label for="name">Name:</label><br>
-        <input type="text" id="name" name="newName" value="<%= name %>"><br>
+        <input type="text" id="name" name="newName" value="<%= locals.name %>"><br>
         <label for="bio">Bio:</label><br>
         <textarea id="bio" name="newBio"><%= bio %></textarea><br><br>
         <button type="submit">Update Account</button>>
