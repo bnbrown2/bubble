@@ -41,12 +41,12 @@ app.use('/api/login', loginRouter)
 app.use('/api/register', registerRouter)
 
 // Import and use web routes. Routes are all in the /routes/web folder.
-const accountRouter = require('./routes/web/webAccount')
-const loginRouter = require('./routes/web/webLogin')
-const registerRouter = require('./routes/web/webRegister')
-app.use('/account', accountRouter)
-app.use('/login', loginRouter)
-app.use('/register', registerRouter)
+const webAccountRouter = require('./routes/web/webAccount')
+const webLoginRouter = require('./routes/web/webLogin')
+const webRegisterRouter = require('./routes/web/webRegister')
+app.use('/account', webAccountRouter)
+app.use('/login', webLoginRouter)
+app.use('/register', webRegisterRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')
