@@ -53,17 +53,17 @@ router
                 }
             }
 
-            const accJSON = {
-            //res.status(200).json({
+            // const accJSON = {
+            res.status(200).json({
                 name: account.name,
                 username: account.username,
                 profile_picture: account.profile_picture,
                 bio: account.bio,
                 account_created: account.account_created,
                 editable: editable
-            }
+            })
 
-            res.render('account', accJSON)
+            // res.render('account', accJSON)
 
         } catch (error) {
             console.error('Error fetching account:', error)
