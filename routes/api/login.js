@@ -9,7 +9,7 @@ const secretKey = config.secretKey
 
 router.route('/')
 .get( (req, res) => {
-    res.status(200)
+    res.status(200).json({'message': 'all good (probably)'})
 })
 .post( async (req, res) => {
     const { username, password } = req.body
