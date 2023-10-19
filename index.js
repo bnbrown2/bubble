@@ -33,12 +33,12 @@ app.set('view engine', 'ejs')
 app.set('mariadbPool', pool)
 
 // Import and use routes. Routes are all in the routes folder.
-const accountRouter = require('./routes/account')
-const loginRouter = require('./routes/login')
-const registerRouter = require('./routes/register')
-app.use('/account', accountRouter)
-app.use('/login', loginRouter)
-app.use('/register', registerRouter)
+const accountRouter = require('./routes/api/account')
+const loginRouter = require('./routes/api/login')
+const registerRouter = require('./routes/api/register')
+app.use('/api/account', accountRouter)
+app.use('/api/login', loginRouter)
+app.use('/api/register', registerRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')
