@@ -4,9 +4,7 @@ const router = express.Router()
 
 router
 .route('/')
-.get((req, res) => {
-    res.render('register')
-}).post( async (req, res) => {
+.post( async (req, res) => {
     const { username, password, email, name } = req.body
 
     try {
