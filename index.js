@@ -44,9 +44,9 @@ app.use('/api/register', registerRouter)
 const webAccountRouter = require('./routes/web/webAccount')
 const webLoginRouter = require('./routes/web/webLogin')
 const webRegisterRouter = require('./routes/web/webRegister')
-app.use('/account', webAccountRouter)
+//app.use('/account', webAccountRouter)
 app.use('/login', webLoginRouter)
-app.use('/register', webRegisterRouter)
+//app.use('/register', webRegisterRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')
