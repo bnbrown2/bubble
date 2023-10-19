@@ -14,7 +14,8 @@ router.route('/:username')
         const accJSON = response;
 
         // Render the HTML page using a template engine (EJS in this case)
-        res.render('account', { accJSON });
+        //res.render('account', { accJSON });
+        res.json(accJSON)
     })
 
 module.exports = router
