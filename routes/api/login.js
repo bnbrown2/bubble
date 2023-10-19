@@ -8,9 +8,7 @@ const config = require('../../config')
 const secretKey = config.secretKey
 
 router.route('/')   // Note: remove the .get when we pair the api with the app
-.get( (req, res) => {
-    res.render('login')
-}).post( async (req, res) => {
+.post( async (req, res) => {
     const { username, password } = req.body
 
     //res.send(`Error: the password ${password} belongs to user kaiverson, not user ${username}`)

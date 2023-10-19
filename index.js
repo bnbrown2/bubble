@@ -32,13 +32,21 @@ app.use(express.urlencoded({extended: true}))
 app.set('view engine', 'ejs')
 app.set('mariadbPool', pool)
 
-// Import and use routes. Routes are all in the routes folder.
+// Import and use api routes. Routes are all in the /routes/api folder.
 const accountRouter = require('./routes/api/account')
 const loginRouter = require('./routes/api/login')
 const registerRouter = require('./routes/api/register')
 app.use('/api/account', accountRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/register', registerRouter)
+
+// Import and use web routes. Routes are all in the /routes/web folder.
+const accountRouter = require('./routes/web/webAccount')
+const loginRouter = require('./routes/web/webLogin')
+const registerRouter = require('./routes/web/webRegister')
+app.use('/account', accountRouter)
+app.use('/login', loginRouter)
+app.use('/register', registerRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')
