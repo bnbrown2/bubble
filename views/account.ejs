@@ -56,9 +56,9 @@
       </form>
     </div>
 
-    <% if (!editable) { %>
+    <% if (!locals.editable) { %>
       <div class="button-container">
-        <button class="edit-button" onclick="showEditForm('<%= username %>')">Edit Account</button>
+        <button class="edit-button" onclick="showEditForm('<%= locals.username %>')">Edit Account</button>
       </div>
     <% } %>
 

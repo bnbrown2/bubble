@@ -11,7 +11,7 @@ router.route('/:username')
         const response = await axios.get(apiUrl);
         
         // Extract the user info from the API response
-        const accJSON = response.data;
+        const accJSON = response;
 
         // Render the HTML page using a template engine (EJS in this case)
         res.render('account', { accJSON });
