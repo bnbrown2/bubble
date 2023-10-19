@@ -7,7 +7,10 @@ const router = express.Router()
 const config = require('../../config')
 const secretKey = config.secretKey
 
-router.route('/')   // Note: remove the .get when we pair the api with the app
+router.route('/')
+.get( (req, res) => {
+    res.status(200)
+})
 .post( async (req, res) => {
     const { username, password } = req.body
 

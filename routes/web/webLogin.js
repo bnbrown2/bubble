@@ -1,9 +1,11 @@
 const express = require('express')
 const router = express.Router()
 
-router.route('/')   // Note: remove the .get when we pair the api with the app
+router.route('/')
 .get( (req, res) => {
     res.render('login')
+}).post( (req, res) => {
+    
 })
 
 module.exports = router
