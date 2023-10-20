@@ -11,7 +11,7 @@ router.route('/:username')
         
         // Extract the user info from the API response
         if (!response.data) {
-            res.json({'error': 'account does not exist'})
+            res.json({error: 'account does not exist'})
             return
         }
         const accJSON = response.data
