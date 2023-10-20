@@ -57,7 +57,7 @@
 
     <% if (!locals.editable) { %>
       <div class="button-container">
-        <button id="edit-button" onclick="showEditForm('<%= locals.username %>')">Expand</button>
+        <button class="edit-button" id="edit-button" onclick="showEditForm('<%= locals.username %>')">Expand</button>
       </div>
     <% } %>
 
@@ -108,12 +108,12 @@
       const dynamicAction = `/account/${username}`;
       accountForm.action = dynamicAction;
       // Change the edit button text to '^'
-      editButton.innerText = 'Expand';
+      editButton.innerText = 'Collapse';
     } else {
       // If it's already visible, hide it
       editForm.style.display = "none";
       // Change the edit button text to 'v'
-      editButton.innerText = 'Contract';
+      editButton.innerText = 'Expand';
     }
   }
 </script>
