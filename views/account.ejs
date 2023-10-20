@@ -94,21 +94,25 @@
 }
     </script>
 
-    <script>
-      function showEditForm(username) {
-        const editForm = document.getElementById("editForm");
-        const accountForm = document.getElementById("accountForm");
+<script>
+  function showEditForm(username) {
+    const editForm = document.getElementById("editForm");
+    const accountForm = document.getElementById("accountForm");
 
-        // Construct the dynamic URL based on the username
-        const dynamicAction = `/account/${username}`;
+    // Check the current display style of the form
+    if (editForm.style.display === "none" || editForm.style.display === "") {
+      // If it's hidden or has no display style, show it
+      editForm.style.display = "block";
+      // Update the form's action attribute
+      const dynamicAction = `/account/${username}`;
+      accountForm.action = dynamicAction;
+    } else {
+      // If it's already visible, hide it
+      editForm.style.display = "none";
+    }
+  }
+</script>
 
-        // Update the form's action attribute
-        accountForm.action = dynamicAction;
-
-        // Show the form
-        editForm.style.display = "block";
-      }
-    </script>
   </div>
 </body>
 </html>
