@@ -109,11 +109,13 @@
       accountForm.action = dynamicAction;
       // Change the edit button text to '^'
       editButton.innerText = 'Collapse';
+      editButton.style.backgroundColor = "red";
     } else {
       // If it's already visible, hide it
       editForm.style.display = "none";
       // Change the edit button text to 'v'
       editButton.innerText = 'Expand';
+      editButton.style.backgroundColor = "green";
     }
   }
 </script>
