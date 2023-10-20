@@ -13,7 +13,7 @@ router.route('/:username')
             const accJSON = response.data
             res.render('account', accJSON )
         } catch(error) {
-            res.status(400).json({'error': error})
+            res.status(400).json({'error': 'Account probably does not exist'})
         }
     })
 
