@@ -57,7 +57,7 @@
 
     <% if (!locals.editable) { %>
       <div class="button-container">
-        <button class="edit-button" onclick="showEditForm('<%= locals.username %>')">Edit Account</button>
+        <button class="edit-button" onclick="showEditForm('<%= locals.username %>')">Expand</button>
       </div>
     <% } %>
 
@@ -98,6 +98,7 @@
   function showEditForm(username) {
     const editForm = document.getElementById("editForm");
     const accountForm = document.getElementById("accountForm");
+    const editButton = document.getElementById("editButton");
 
     // Check the current display style of the form
     if (editForm.style.display === "none" || editForm.style.display === "") {
@@ -106,12 +107,17 @@
       // Update the form's action attribute
       const dynamicAction = `/account/${username}`;
       accountForm.action = dynamicAction;
+      // Change the edit button text to '^'
+      editButton.innerText = 'Expand';
     } else {
       // If it's already visible, hide it
       editForm.style.display = "none";
+      // Change the edit button text to 'v'
+      editButton.innerText = 'Contract';
     }
   }
 </script>
+
 
   </div>
 </body>
