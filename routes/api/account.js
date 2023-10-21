@@ -83,11 +83,10 @@ router
             const timestamp = new Date().toISOString()
             console.log(`[${timestamp}] Database connection acquired!`)
     
-            const [result] = await connection.execute(
+            const result = await connection.execute(
                 'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
                 [newName, newBio, username]
             )
-            console.log('here is the result:', result)
 
             connection.release()
             const timestamp2 = new Date().toISOString()
@@ -98,7 +97,7 @@ router
             if (affectedRows > 0) {
                 res.status(200).json({ message: `Updated ${affectedRows} row`})
             } else {
-                res.status(404).json({ error: 'No matching rows found for update'})
+                res.status(404).json({ error: 'Updated 0 rows'})
             }
         } catch(error) {
             console.error('Error updating account:', error)
