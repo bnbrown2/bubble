@@ -92,8 +92,7 @@ router
             const timestamp2 = new Date().toISOString()
             console.log(`[${timestamp2}] Database disconnected (gracefully)`)
 
-            const affectedRows = result ? result.affectedRow : 0
-
+            const affectedRows = result ? result.affectedRows : 0
             console.log(`${affectedRows} rows affected`)
             if (affectedRows > 0) {
                 res.status(200).json({ message: `Updated ${affectedRows} row`})
