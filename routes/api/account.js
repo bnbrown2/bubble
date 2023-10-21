@@ -81,7 +81,7 @@ router
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
             const timestamp = new Date().toISOString()
-            console.log(`[${timestamp}] Database connection acquired!`)
+            console.log(`[${timestamp}] account api connected to the database!`)
     
             const result = await connection.execute(
                 'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
@@ -90,10 +90,6 @@ router
 
             const affectedRows = result ? result.affectedRows : 0
             console.log(`${affectedRows} rows affected`)
-
-            connection.release()
-            const timestamp2 = new Date().toISOString()
-            console.log(`[${timestamp2}] Database disconnected (gracefully)`)
 
             if (affectedRows > 0) {
                 res.status(200).json({ message: `Updated ${affectedRows} row`})
