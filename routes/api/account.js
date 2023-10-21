@@ -17,8 +17,6 @@ router
         try {
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
-            const timestamp = new Date().toISOString()
-            console.log(`[${timestamp}] Database connection acquired!`)
     
             const [rows] = await connection.execute(
                 'SELECT * FROM accounts WHERE username = ?',
@@ -26,8 +24,6 @@ router
             )
 
             connection.release()
-            const timestamp2 = new Date().toISOString()
-            console.log(`[${timestamp2}] Database disconnected (gracefully)`)
 
             if (!rows) {
                 return res.status(404).json({ error: 'Account does not exist'})
@@ -87,6 +83,7 @@ router
                 'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
                 [newName, newBio, username]
             )
+            connection.release()
 
             const affectedRows = result ? result.affectedRows : 0
             console.log(`${affectedRows} rows affected`)
