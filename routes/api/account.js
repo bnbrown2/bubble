@@ -94,6 +94,7 @@ router
 
             const affectedRows = result ? result.affectedRow : 0
 
+            console.log(`${affectedRows} rows affected`)
             if (affectedRows > 0) {
                 res.status(200).json({ message: `Updated ${affectedRows} row`})
             } else {
