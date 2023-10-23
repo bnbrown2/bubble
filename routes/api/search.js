@@ -4,7 +4,7 @@ const router = express.Router()
 router
 .route('/')
 .get( (req, res) => {
-    res.send('search')
+    res.render('search')
 })
 .post( async (req, res) => {
     try {
