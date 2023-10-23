@@ -3,10 +3,7 @@ const router = express.Router()
 
 router
 .route('/')
-.get( (req, res) => {
-    res.render('search')
-})
-.post( async (req, res) => {
+.get( async (req, res) => {
     try {
         const { searchTerm } = req.body
 
@@ -30,7 +27,8 @@ router
         //    return res.status(200).json({ 'message': 'No results'})
         //}
 
-        res.status(200).render('search', { rows } )
+        //res.status(200).render('search', { rows } )
+        res.status(200).json(rows)
 
     } catch(error) {
         console.error('Error looking up accounts:', error)

@@ -46,9 +46,11 @@ app.use('/api/search', searchRouter)
 const webAccountRouter = require('./routes/web/webAccount')
 const webLoginRouter = require('./routes/web/webLogin')
 const webRegisterRouter = require('./routes/web/webRegister')
+const webSearchRouter = require('./routes/web/webSearch')
 app.use('/account', webAccountRouter)
 app.use('/login', webLoginRouter)
 app.use('/register', webRegisterRouter)
+app.use('/search', webSearchRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')
