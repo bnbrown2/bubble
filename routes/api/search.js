@@ -5,7 +5,7 @@ router
 .route('/')
 .get( async (req, res) => {
     try {
-        const { searchTerm } = req.body
+        const { searchTerm } = req.query
 
         if (!searchTerm) {
             return res.status(400).json({ error: 'searchTerm not provided' })
