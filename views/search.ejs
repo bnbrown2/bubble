@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Account List</title>
 </head>
 <body>
+
     <form action="/api/search" method="POST">
         <input type="text" id="search" name="searchTerm" value="Search"><br><br>
         <button type="submit">Search</button>><br><br>
@@ -13,25 +12,27 @@
 
     <h1>List of Accounts</h1>
     <ul>
-        <% accounts = locals.rows %>
-        <% for (let i = 0; i < accounts.length; i++) { %>
-            <li>
-                <div class="account-row">
-                    <div class="account-info">
-                        <p>Name: <%= accounts[i].name || 'No Name' %></p>
-                        <p>Username: <%= accounts[i].username %></p>
+        <% account = locals.rows %>
+        <% if (accounts && accounts.length > 0) { %>
+            <% for (let i = 0; i < accounts.length; i++) { %>
+                <li>
+                    <div class="account-row">
+                        <div class="account-info">
+                            <p>Name: <%= accounts[i].name || 'No Name' %></p>
+                            <p>Username: <%= accounts[i].username %></p>
+                        </div>
+                        <div class="account-button">
+                            <form action="/account/<%= accounts[i].username %>" method="get">
+                                <button type="submit">View Profile</button>
+                            </form>
+                        </div>
                     </div>
-                    <div class="account-button">
-                        <form action="/account/<%= accounts[i].username %>" method="get">
-                            <button type="submit">View Profile</button>
-                        </form>
-                    </div>
-                </div>
-            </li>
+                </li>
+            <% } %>
+        <% } else { %>
+            <li>No accounts found.</li>
         <% } %>
     </ul>
-
-
-
 </body>
 </html>
+    
