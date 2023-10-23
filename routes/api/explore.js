@@ -29,11 +29,13 @@ router
 
             console.log('Here are the query results:')
             console.log(rows)
+            res.send('good job')
 
     } catch(error) {
         console.error('Error looking up accounts:', error)
         res.status(500).json({ error: 'Internal server error'})
     }
 
-    
 })
+
+module.exports = router
