@@ -42,16 +42,3 @@ router
 })
 
 module.exports = router
-
-
-
-
-{
-    {
-
-    },
-
-    {
-
-    }
-}
