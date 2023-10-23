@@ -30,7 +30,6 @@ router
             return res.status(200).json({ 'message': 'No results'})
         }
 
-        console.log(rows.)
         console.log('Here are the query results:')
         console.log(rows)
         res.send('good job')
