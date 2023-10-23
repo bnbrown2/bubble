@@ -36,9 +36,11 @@ app.set('mariadbPool', pool)
 const accountRouter = require('./routes/api/account')
 const loginRouter = require('./routes/api/login')
 const registerRouter = require('./routes/api/register')
+const exploreRouter = require('./routes/api/explore')
 app.use('/api/account', accountRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/register', registerRouter)
+app.use('/api/explore', exploreRouter)
 
 // Import and use web routes. Routes are all in the /routes/web folder.
 const webAccountRouter = require('./routes/web/webAccount')
