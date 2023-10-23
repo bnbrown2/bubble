@@ -21,7 +21,7 @@ router
         // or something along those lines (because someone with more followers is more likely to be looked up)
         const [rows] = await connection.execute(
             'SELECT * FROM accounts WHERE username LIKE %?% OR name LIKE %?%',
-            [searchTerm, searchTerm]
+            [`%${searchTerm}%`, `%${searchTerm}%`]
         )
 
         connection.release()
