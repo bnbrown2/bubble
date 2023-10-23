@@ -26,11 +26,11 @@ router
 
         connection.release()
 
-        if (!rows) {
-            return res.status(200).json({ 'message': 'No results'})
-        }
+        //if (!rows) {
+        //    return res.status(200).json({ 'message': 'No results'})
+        //}
 
-        res.status(200).json(rows)
+        res.status(200).render('search', rows)
 
     } catch(error) {
         console.error('Error looking up accounts:', error)
