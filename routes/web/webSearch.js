@@ -10,7 +10,7 @@ router.route('/')
             return res.render('search')
         }
     
-        const apiUrl = `http://54.202.77.126:8080/api/search/}`
+        const apiUrl = `http://54.202.77.126:8080/api/search?searchTerm=${searchTerm}}`
 
         try {
             const response = await axios.get(apiUrl)
