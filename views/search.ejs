@@ -33,6 +33,31 @@
             <li>No accounts found.</li>
         <% } %>
     </ul>
+
+    <script>
+        fetch('/api/search') // This should be the URL to your search.js endpoint
+  .then(response => response.json())
+  .then(data => {
+    // Handle the JSON data here
+    // Update the DOM with the data as needed
+    // For example, you can dynamically create HTML elements to display the results
+    if (data && data.length > 0) {
+      data.forEach(account => {
+        // Create and append elements to display the search results
+        const resultElement = document.createElement('div');
+        resultElement.textContent = `Name: ${account.name || 'No Name'}, Username: ${account.username}`;
+        // Append the resultElement to the DOM
+        document.getElementById('resultsContainer').appendChild(resultElement);
+      });
+    } else {
+      // Handle the case when there are no results
+      document.getElementById('resultsContainer').textContent = 'No accounts found.';
+    }
+  })
+  .catch(error => {
+    console.error('Error fetching data:', error);
+  });
+    </script>
 </body>
 </html>
     
