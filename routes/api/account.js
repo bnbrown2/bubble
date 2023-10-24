@@ -66,6 +66,28 @@ router
             res.status(500).json({ error: 'Internal server error'})
         }
     }).put( async (req, res) => {
+
+        let editable = false
+        const token = req.headers.authorization
+
+        if (token) {
+            const tokenParts = token.split(' ')
+
+            if (tokenParts.length === 2 && tokenParts[0] === 'Bearer') {
+                const userToken = tokenParts[1]
+
+                jwt.verify(userToken, secretKey, (err, decoded) => {
+                    if (!err && decoded.username === username) {
+                        editable = true;
+                    } else {
+                        return res.status(400).json({ 'error': 'action is not authorized'})
+                    }
+                })
+            }
+        }
+
+
+
         const { username } = req.params
         const { newBio, newName } = req.body
 
