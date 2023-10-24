@@ -33,7 +33,7 @@
             <li>No accounts found.</li>
         <% } %>
     </ul>
-
+    <div id="resultsContainer">
     <script>
         fetch('/api/search') // This should be the URL to your search.js endpoint
   .then(response => response.json())
@@ -58,6 +58,7 @@
     console.error('Error fetching data:', error);
   });
     </script>
+    </div>
 </body>
 </html>
     
