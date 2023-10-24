@@ -15,6 +15,7 @@ router.route('/')
         try {
             const response = await axios.get(apiUrl)
             const rows = response.data
+            console.log(rows)
             res.render('search', rows )
         } catch(error) {
             res.status(400).json({'error': 'Account probably does not exist'})
