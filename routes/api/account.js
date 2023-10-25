@@ -89,7 +89,7 @@ router
 
 
         const { username } = req.params
-        const { newBio, newName } = req.body
+        const { newBio, newName, newPicture } = req.body
 
         if (!username) {
             return res.status(400).json({ error: 'Username not provided' })
@@ -100,11 +100,18 @@ router
             const connection = await connectionPool.getConnection()
             const timestamp = new Date().toISOString()
             console.log(`[${timestamp}] account api connected to the database!`)
-    
-            const result = await connection.execute(
-                'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
-                [newName, newBio, username]
-            )
+
+            if (newPicture) {
+                const result = await connection.execute(
+                    'UPDATE accounts SET name = ?, bio = ?, profile_picture = ? WHERE username = ?',
+                    [newName, newBio, newPicture, username]
+                )
+            } else {
+                const result = await connection.execute(
+                    'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
+                    [newName, newBio, username]
+                )
+            }
             connection.release()
 
             const affectedRows = result ? result.affectedRows : 0
