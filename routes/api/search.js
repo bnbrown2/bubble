@@ -23,13 +23,18 @@ router
 
         connection.release()
 
-        //if (!rows) {
-        //    return res.status(200).json({ 'message': 'No results'})
-        //}
-
         //res.status(200).render('search', { rows } )
-        res.set('Content-Type', 'application/json')
-        res.status(200).json(JSON.stringify(rows, null, 2))
+        // the following code is so the response looks good if client is a browser
+        const acceptHeader = req.get('Accept');
+
+        if (acceptHeader.includes('application/json')) {
+            res.json(data)
+        }
+
+        else {
+            res.set('Content-Type', 'application/json')
+            res.send(JSON.stringify(data, null, 2))
+        }
 
     } catch(error) {
         console.error('Error looking up accounts:', error)
