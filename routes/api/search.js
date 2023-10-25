@@ -28,6 +28,7 @@ router
         //}
 
         //res.status(200).render('search', { rows } )
+        res.set('Content-Type', 'application/json')
         res.status(200).json(rows)
 
     } catch(error) {
