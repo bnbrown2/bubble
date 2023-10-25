@@ -29,7 +29,7 @@ router
 
         //res.status(200).render('search', { rows } )
         res.set('Content-Type', 'application/json')
-        res.status(200).json(rows)
+        res.status(200).json(JSON.stringify(rows, null, 2))
 
     } catch(error) {
         console.error('Error looking up accounts:', error)
