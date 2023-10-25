@@ -26,7 +26,9 @@
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="newName" value="<%= locals.name %>"><br>
         <label for="bio">Bio:</label><br>
-        <textarea id="bio" name="newBio"><%= locals.bio %></textarea><br><br>
+        <textarea id="bio" name="newBio"><%= locals.bio %></textarea><br>
+        <label for="newPicture">New Profile Picture:</label><br>
+        <input type="file" accept="image/jgep, image/png"><br>
         <button type="submit">Update Account</button>>
       </form>
     </div>
