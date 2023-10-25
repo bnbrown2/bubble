@@ -28,9 +28,10 @@
         <label for="bio">Bio:</label><br>
         <textarea id="bio" name="newBio"><%= locals.bio %></textarea><br>
         <label for="newPicture">New Profile Picture:</label><br>
-        <input type="file" accept="image/jgep, image/png"><br>
-        <button type="submit">Update Account</button>>
+        <input type="file" accept="image/jgep, image/png"><br><br>
+        <button type="submit">Update Account</button>
       </form>
+      <br>
     </div>
 
     <% if (!locals.editable) { %>
