@@ -28,12 +28,12 @@ router
         const acceptHeader = req.get('Accept');
 
         if (acceptHeader.includes('application/json')) {
-            res.json(data)
+            res.json(rows)
         }
 
         else {
             res.set('Content-Type', 'application/json')
-            res.send(JSON.stringify(data, null, 2))
+            res.send(JSON.stringify(rows, null, 2))
         }
 
     } catch(error) {
