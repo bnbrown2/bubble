@@ -7,19 +7,22 @@ router
     try {
         const { searchTerm } = req.query
 
-        if (!searchTerm) {
-            return res.status(400).json({ error: 'searchTerm not provided' })
-        }
-
         const connectionPool = req.app.get('mariadbPool')
         const connection = await connectionPool.getConnection()
 
         // Note to self, someday order the results depending on how many followers each account has
         // or something along those lines (because someone with more followers is more likely to be looked up)
-        const rows = await connection.execute(
-            'SELECT profile_picture, name, username FROM accounts WHERE username LIKE ? OR name LIKE ?',
-            [`%${searchTerm}%`, `%${searchTerm}%`]
-        )
+
+        if (searchTerm) {
+            const rows = await connection.execute(
+                'SELECT profile_picture, name, username FROM accounts WHERE username LIKE ? OR name LIKE ?',
+                [`%${searchTerm}%`, `%${searchTerm}%`]
+            )
+        } else {
+            const rows = await connection.execute(
+                'SELECT profile_picture, name, username FROM accounts'
+            )
+        }
 
         connection.release()
 

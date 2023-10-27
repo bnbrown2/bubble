@@ -98,20 +98,11 @@ router
         try {
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
-            const timestamp = new Date().toISOString()
-            console.log(`[${timestamp}] account api connected to the database!`)
-
-            if (newPicture) {
-                const result = await connection.execute(
-                    'UPDATE accounts SET name = ?, bio = ?, profile_picture = ? WHERE username = ?',
-                    [newName, newBio, newPicture, username]
-                )
-            } else {
-                const result = await connection.execute(
-                    'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
-                    [newName, newBio, username]
-                )
-            }
+    
+            const result = await connection.execute(
+                'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
+                [newName, newBio, username]
+            )
             connection.release()
 
             const affectedRows = result ? result.affectedRows : 0
