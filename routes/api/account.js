@@ -51,12 +51,21 @@ router
 
             // const accJSON = {
             res.status(200).json({
-                name: account.name,
                 username: account.username,
-                profile_picture: account.profile_picture,
+                uid: account.uid,
+                name: account.name,
+                profile_picture: `/api/profile_picture/u/${account.uid}`,               //account.profile_picture,
+                url: `/api/account/${account.username}`,
+                followers_url: `/api/account/${account.username}/followers`,
+                following_url: `/api/account/${account.username}/following`,
+                bubble_admin: false,                                                    // eventually get this from table
+                email: account.email,
                 bio: account.bio,
-                account_created: account.account_created,
-                editable: editable
+                followers: 0,                                                           // eventually get this from table
+                following: 0,                                                           // eventually get this from table
+                created_at: account.created_at,
+                last_accessed_at: account.last_accessed_at,
+                editable: editable,
             })
 
             // res.render('account', accJSON)
