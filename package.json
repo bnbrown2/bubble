@@ -10,9 +10,11 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "aws-sdk": "^2.1482.0",
     "axios": "^1.5.1",
     "bcrypt": "^5.1.1",
     "certbot": "^5.0.3",
+    "dotenv": "^16.3.1",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
     "jsonwebtoken": "^9.0.2",

@@ -7,6 +7,8 @@ const router = express.Router()
 const config = require('../../config')
 const secretKey = config.secretKey
 
+const { uploadFile } = require('./s3')
+
 router
     .route('/:username')
     .get( async (req, res) => {
@@ -111,7 +113,13 @@ router
 
 
         const { username } = req.params
-        const { newBio, newName, newPicture } = req.body
+        const { newBio, newName } = req.body
+        const file = req.file
+
+        if (file) {
+            const uploadResult = await uploadFile(file)
+            console.log(uploadResult)
+        }
 
         if (!username) {
             return res.status(400).json({ error: 'Username not provided' })
