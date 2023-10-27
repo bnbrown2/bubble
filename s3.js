@@ -16,7 +16,7 @@ const s3 = new S3({
 })
 
 // uploads a file to s3
-export function uploadFile(file) {
+function uploadFile(file) {
     const fileStream = fs.createReadStream(file.path)
 
     const uploadParams = {
