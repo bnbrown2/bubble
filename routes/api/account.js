@@ -1,5 +1,7 @@
 const express = require('express')
 const jwt = require('jsonwebtoken')
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
 const router = express.Router()
 
 const config = require('../../config')
@@ -85,7 +87,7 @@ router
             console.error('Error fetching account:', error)
             res.status(500).json({ error: 'Internal server error'})
         }
-    }).put( async (req, res) => {
+    }).put( upload.single('image'), async (req, res) => {
 
         let editable = false
         const token = req.headers.authorization
