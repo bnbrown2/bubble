@@ -116,10 +116,12 @@ router
         const { newBio, newName } = req.body
         const file = req.file
 
+        console.log("before s3 stuff")
         if (file) {
             const uploadResult = await uploadFile(file)
             console.log(uploadResult)
         }
+        console.log("after s3 stuff")
 
         if (!username) {
             return res.status(400).json({ error: 'Username not provided' })
