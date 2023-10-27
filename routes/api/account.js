@@ -7,7 +7,7 @@ const router = express.Router()
 const config = require('../../config')
 const secretKey = config.secretKey
 
-const { uploadFile } = require('./s3')
+const { uploadFile } = require('../../s3')
 
 router
     .route('/:username')
