@@ -49,8 +49,8 @@ router
                 }
             }
 
-            // const accJSON = {
-            res.status(200).json({
+            const accJSON = {
+            //res.status(200).json({
                 username: account.username,
                 uid: account.uid,
                 name: account.name,
@@ -66,7 +66,18 @@ router
                 created_at: account.created_at,
                 last_accessed_at: account.last_accessed_at,
                 editable: editable,
-            })
+            }
+
+            const acceptHeader = req.get('Accept')
+
+            if (acceptHeader.includes('application/json')) {
+                res.json(accJSON)
+            }
+
+            else {
+                res.set('Content-Type', 'application/json')
+                res.send(JSON.stringify(accJSON, null, 2))
+            }
 
             // res.render('account', accJSON)
 
