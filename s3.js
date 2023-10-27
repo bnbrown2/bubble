@@ -1,4 +1,4 @@
-import { SESV2 } from 'aws-sdk'
+import { S3 } from 'aws-sdk'
 
 require('dotenv').config()
 const fs = require('fs')
