@@ -124,8 +124,9 @@ router
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
 
+            let uid = []
             if (image) {
-                const uid = await connection.execute(
+                uid = await connection.execute(
                     'SELECT uid FROM accounts WHERE username = ?',
                     [username]
                 )
