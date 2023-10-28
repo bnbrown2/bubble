@@ -130,7 +130,7 @@ router
                     [username]
                 )
 
-                const uploadResult = await uploadFile(image, uid)
+                const uploadResult = await uploadFile(image, uid.uid)
                 console.log(uploadResult)
             }
 
