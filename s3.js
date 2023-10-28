@@ -21,7 +21,8 @@ function uploadFile(file, uid) {
         Bucket: bucketName,
         Body: fileStream,
         Key: `profile_picture/u/${uid}`,
-        ContentType: 'image/jpeg'
+        ContentType: 'image/jpeg',
+        ACL: 'public-read'
     }
 
     return s3.upload(uploadParams).promise()
