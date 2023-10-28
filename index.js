@@ -42,7 +42,7 @@ app.use('/api/account', accountRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/register', registerRouter)
 app.use('/api/search', searchRouter)
-app.use('/api/image', imageRouter)
+app.use('/image', imageRouter)
 
 // Import and use web routes. Routes are all in the /routes/web folder.
 const webAccountRouter = require('./routes/web/webAccount')
