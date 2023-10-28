@@ -33,6 +33,7 @@ router
             name: account.name,
             profile_picture: `/image/profile_picture/u/${account.uid}`,
             url: `/api/account/${account.username}`,
+            html_url: `/account/${account.username}`,
             followers_url: `/api/account/${account.username}/followers`,
             following_url: `/api/account/${account.username}/following`
         }))
