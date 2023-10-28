@@ -13,6 +13,7 @@
       border: 1px solid #ccc;
       border-radius: 5px;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      background-color: lightblue;
     }
     h1 {
       font-size: 24px;
@@ -21,7 +22,7 @@
       max-width: 80px;
       max-height: 80px;
       border-radius: 50%;
-      border: 2px solid black;
+      border: 1px solid blue;
     }
     ul {
       list-style: none;
@@ -58,11 +59,8 @@
       <li><img src="<%= locals.profile_picture %>"></li>
       <li><strong>Name:</strong> <%= locals.name %></li>
       <li><strong>Username:</strong> <%= locals.username %></li>
-      <li><strong>Profile Picture:</strong> <%= locals.profile_picture %></li>
       <li><strong>Bio:</strong> <%= locals.bio %></li>
       <li><strong>Account Created:</strong> <%= locals.created_at %></li>
-      <li><strong>Account Updated (not implemented):</strong> <%= locals.last_accessed_at %></li>
-      <li><strong>Editable:</strong> <%= locals.editable ? 'Yes' : 'No' %></li>
     </ul>
 
     <div id="editForm" style="display: none;">
