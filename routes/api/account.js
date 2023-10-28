@@ -144,6 +144,7 @@ router
             
             if (image) {
                 const uploadResult = await uploadFile(image, uid[0].uid)
+                console.log(uploadResult)
             }
 
             if (affectedRows > 0) {
