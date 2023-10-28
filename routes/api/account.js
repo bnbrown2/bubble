@@ -116,14 +116,6 @@ router
         const { newBio, newName } = req.body
         const image = req.file
 
-        console.log("before s3 stuff")
-        console.log(image)
-        if (image) {
-            const uploadResult = await uploadFile(image)
-            console.log(uploadResult)
-        }
-        console.log("after s3 stuff")
-
         if (!username) {
             return res.status(400).json({ error: 'Username not provided' })
         }
@@ -131,7 +123,17 @@ router
         try {
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
-    
+
+            if (image) {
+                const uid = await connection.execute(
+                    'SELECT uid FROM accounts WHERE username = ?',
+                    [username]
+                )
+
+                const uploadResult = await uploadFile(image, uid)
+                console.log(uploadResult)
+            }
+
             const result = await connection.execute(
                 'UPDATE accounts SET name = ?, bio = ? WHERE username = ?',
                 [newName, newBio, username]

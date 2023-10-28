@@ -14,13 +14,14 @@ const s3 = new S3({
 })
 
 // uploads a file to s3
-function uploadFile(file) {
+function uploadFile(file, uid) {
     const fileStream = fs.createReadStream(file.path)
 
     const uploadParams = {
         Bucket: bucketName,
         Body: fileStream,
-        Key: file.filename
+        Key: `profile_picture/u/${uid}`,
+        ContentType: 'image/jpeg'
     }
 
     return s3.upload(uploadParams).promise()
