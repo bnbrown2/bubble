@@ -8,6 +8,7 @@ const { uploadFile, getFileStream  } = require('../../s3')
 router
     .route('profile_picture/u/:key')
     .get( (req, res) => {
+        console.log("hello")
         const key = req.params.key
         const readStream = getFileStream(`profile_picture/u/${key}`)
 
