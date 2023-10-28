@@ -118,7 +118,7 @@ router
 
         console.log("before s3 stuff")
         console.log(image)
-        if (file) {
+        if (image) {
             const uploadResult = await uploadFile(image)
             console.log(uploadResult)
         }
