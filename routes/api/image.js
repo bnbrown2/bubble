@@ -6,13 +6,12 @@ const router = express.Router()
 const { uploadFile, getFileStream  } = require('../../s3')
 
 router
-    .route('/:key')
+    .route('profile_picture/u/:key')
     .get( (req, res) => {
         const key = req.params.key
-        const readStream = getFileStream(key)
+        const readStream = getFileStream(`profile_picture/u/${key}`)
 
-        const aaa = readStream.pipe(res)
-        console.log(aaa)
+        readStream.pipe(res)
     })
 
 module.exports = router
