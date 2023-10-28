@@ -2,14 +2,58 @@
 <html>
 <head>
     <title>Account List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        form {
+            margin-top: 10px;
+        }
+        h1 {
+            color: #333;
+        }
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+        li {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .account-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .account-info {
+            flex: 70%;
+        }
+        .account-button {
+            flex: 30%;
+        }
+        .account-button button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .account-button button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
-
     <form action="/search" method="GET">
         <input type="text" id="search" name="searchTerm" placeholder="Search"><br><br>
         <button type="submit">Search</button><br><br>
     </form>
-
     <h1>List of Accounts</h1>
     <ul>
         <% accounts = locals.rows %>
@@ -22,9 +66,9 @@
                             <p>Username: <%= accounts[i].username %></p>
                         </div>
                         <div class="account-button">
-                            <form action="/account/<%= accounts[i].username %>" method="get">
-                                <button type="submit">View Profile</button>
-                            </form>
+                            <a href="<%= accounts[i].url %>">
+                                <button type="button">View Profile</button>
+                            </a>
                         </div>
                     </div>
                 </li>
@@ -33,32 +77,5 @@
             <li>No accounts found.</li>
         <% } %>
     </ul>
-    <div id="resultsContainer">
-    <script>
-        fetch('/api/search') // This should be the URL to your search.js endpoint
-  .then(response => response.json())
-  .then(data => {
-    // Handle the JSON data here
-    // Update the DOM with the data as needed
-    // For example, you can dynamically create HTML elements to display the results
-    if (data && data.length > 0) {
-      data.forEach(account => {
-        // Create and append elements to display the search results
-        const resultElement = document.createElement('div');
-        resultElement.textContent = `Name: ${account.name || 'No Name'}, Username: ${account.username}`;
-        // Append the resultElement to the DOM
-        document.getElementById('resultsContainer').appendChild(resultElement);
-      });
-    } else {
-      // Handle the case when there are no results
-      document.getElementById('resultsContainer').textContent = 'No accounts found.';
-    }
-  })
-  .catch(error => {
-    console.error('Error fetching data:', error);
-  });
-    </script>
-    </div>
 </body>
 </html>
-    
