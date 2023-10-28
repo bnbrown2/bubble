@@ -7,10 +7,21 @@ const { uploadFile, getFileStream  } = require('../../s3')
 
 router
     .route('/profile_picture/u/:key')
-    .get( (req, res) => {
+    .get( async (req, res) => {
         console.log("hello")
         const key = req.params.key
-        const readStream = getFileStream(`profile_picture/u/${key}`)
+        var readStream = getFileStream(`profile_picture/u/${key}`)
+
+        readStream.on('error', (err) => {
+            // Handle the error when the S3 object doesn't exist
+            if (err.code === 'NoSuchKey') {
+              // Serve the default profile picture instead
+              readStream = getFileStream(`profile_picture/u/default`)
+            } else {
+              // Handle other errors
+              res.status(500).end()
+            }
+        })
 
         readStream.pipe(res)
     })
