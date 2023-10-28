@@ -114,12 +114,12 @@ router
 
         const { username } = req.params
         const { newBio, newName } = req.body
-        const file = req.file
+        const image = req.file
 
         console.log("before s3 stuff")
-        console.log(file)
+        console.log(image)
         if (file) {
-            const uploadResult = await uploadFile(file)
+            const uploadResult = await uploadFile(image)
             console.log(uploadResult)
         }
         console.log("after s3 stuff")
