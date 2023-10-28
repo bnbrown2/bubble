@@ -2,39 +2,79 @@
 <html>
 <head>
   <title>Account Details</title>
-
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .account-details {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 24px;
+    }
+    img {
+      max-width: 100px;
+      max-height: 100px;
+      border-radius: 50%;
+    }
+    ul {
+      list-style: none;
+      padding: 0;
+    }
+    ul li {
+      margin: 10px 0;
+    }
+    label, input, textarea {
+      display: block;
+      margin: 5px 0;
+    }
+    .button-container {
+      text-align: right;
+    }
+    button.edit-button {
+      background-color: green;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
   <form action="/search" method="GET">
-    <input type="text" id="search" name="searchTerm" hint="Search"><br><br>
+    <input type="text" id="search" name="searchTerm" placeholder="Search"><br><br>
     <button type="submit">Search</button><br><br>
   </form>
   <div class="account-details">
     <h1>Account Details</h1>
     <ul>
-      <img src="/image/profile_picture/u/4">
+      <li><img src="<%= locals.profile_picture %>"></li>
       <li><strong>Name:</strong> <%= locals.name %></li>
       <li><strong>Username:</strong> <%= locals.username %></li>
       <li><strong>Profile Picture:</strong> <%= locals.profile_picture %></li>
       <li><strong>Bio:</strong> <%= locals.bio %></li>
       <li><strong>Account Created:</strong> <%= locals.created_at %></li>
-      <li><strong>Account Updated (not implimented):</strong> <%= locals.last_accessed_at %></li>
+      <li><strong>Account Updated (not implemented):</strong> <%= locals.last_accessed_at %></li>
       <li><strong>Editable:</strong> <%= locals.editable ? 'Yes' : 'No' %></li>
     </ul>
 
     <div id="editForm" style="display: none;">
       <h2>Edit Account</h2>
       <form id="accountForm" onsubmit="updateAccount('<%= locals.username %>')" enctype="multipart/form-data">
-        <label for="name">Name:</label><br>
+        <label for="name">Name:</label>
         <input type="text" id="name" name="newName" value="<%= locals.name %>"><br>
-        <label for="bio">Bio:</label><br>
+        <label for="bio">Bio:</label>
         <textarea id="bio" name="newBio"><%= locals.bio %></textarea><br>
-        <label for="image">New Profile Picture:</label><br>
+        <label for="image">New Profile Picture:</label>
         <input type="file" id="image" name="image" accept="image/jpeg, image/png"><br><br>
         <button type="submit">Update Account</button>
       </form>
-
-      <br>
     </div>
 
     <% if (!locals.editable) { %>
