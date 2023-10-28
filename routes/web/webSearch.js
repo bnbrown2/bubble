@@ -4,11 +4,6 @@ const router = express.Router()
 
 router.route('/')
     .get( async (req, res) => {
-        const searchTerm = req.query.searchTerm
-
-        if (!searchTerm) {
-            return res.render('search')
-        }
     
         const apiUrl = `http://54.202.77.126:8080/api/search`
 
