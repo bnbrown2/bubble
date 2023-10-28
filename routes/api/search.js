@@ -31,7 +31,7 @@ router
             username: account.username,
             uid: account.uid,
             name: account.name,
-            profile_picture: `/api/profile_picture/u/${account.uid}`,
+            profile_picture: `/image/profile_picture/u/${account.uid}`,
             url: `/api/account/${account.username}`,
             followers_url: `/api/account/${account.username}/followers`,
             following_url: `/api/account/${account.username}/following`
