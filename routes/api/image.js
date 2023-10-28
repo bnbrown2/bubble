@@ -11,7 +11,8 @@ router
         const key = req.params.key
         const readStream = getFileStream(key)
 
-        readStream.pipe(res)
+        const aaa = readStream.pipe(res)
+        console.log(aaa)
     })
 
 module.exports = router
