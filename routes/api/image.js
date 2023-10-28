@@ -13,7 +13,7 @@ router
 
         readStream.on('error', (err) => {
             // Handle the error when the S3 object doesn't exist
-            if (err.code === 'NoSuchKey') {
+            if (true) {//err.code === 'NoSuchKey') {
                 // Serve the default profile picture instead
                 const defaultReadStream = getFileStream(`profile_picture/u/default`)
                 defaultReadStream.pipe(res)
