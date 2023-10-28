@@ -37,10 +37,12 @@ const accountRouter = require('./routes/api/account')
 const loginRouter = require('./routes/api/login')
 const registerRouter = require('./routes/api/register')
 const searchRouter = require('./routes/api/search')
+const imageRouter = require('./routes/api/image')
 app.use('/api/account', accountRouter)
 app.use('/api/login', loginRouter)
 app.use('/api/register', registerRouter)
 app.use('/api/search', searchRouter)
+app.use('/api/image', imageRouter)
 
 // Import and use web routes. Routes are all in the /routes/web folder.
 const webAccountRouter = require('./routes/web/webAccount')

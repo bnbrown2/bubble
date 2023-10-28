@@ -21,8 +21,7 @@ function uploadFile(file, uid) {
         Bucket: bucketName,
         Body: fileStream,
         Key: `profile_picture/u/${uid}`,
-        ContentType: 'image/jpeg',
-        ACL: 'public-read'
+        ContentType: 'image/jpeg'
     }
 
     return s3.upload(uploadParams).promise()
@@ -31,3 +30,12 @@ exports.uploadFile = uploadFile
 
 
 // downloads a file from s3
+function getFileStream(fileKey) {
+    const downloadParams = {
+        Key: fileKey,
+        Bucket: bucketName
+    }
+
+    return s3.getObject(downloadParams).createReadStream()
+}
+exports.getFileStream = getFileStream
