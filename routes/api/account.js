@@ -141,7 +141,7 @@ router
 
             const affectedRows = result ? result.affectedRows : 0
             console.log(`${affectedRows} rows affected`)
-            
+            console.log(image)
             if (image) {
                 const uploadResult = await uploadFile(image, uid[0].uid)
                 console.log(uploadResult)
