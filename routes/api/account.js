@@ -142,6 +142,10 @@ router
             console.log(`${affectedRows} rows affected`)
             console.log(image)
             if (image) {
+                if (!Buffer.isBuffer(image.buffer) || !image.mimetype.includes('image')) {
+                    return res.status(400).json({ error: 'Invalid image data' });
+                }
+
                 const compressedImage = await sharp(image.buffer)
                 .resize({ fit: 'inside', width: 800 }) // Adjust the size as needed
                 .toBuffer()
