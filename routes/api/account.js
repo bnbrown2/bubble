@@ -2,6 +2,7 @@ const express = require('express')
 const jwt = require('jsonwebtoken')
 const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const sharp = require('sharp')
 const router = express.Router()
 
 const config = require('../../config')
@@ -141,7 +142,11 @@ router
             console.log(`${affectedRows} rows affected`)
             console.log(image)
             if (image) {
-                const uploadResult = await uploadFile(image, uid[0].uid)
+                const compressedImage = await sharp(image.buffer)
+                .resize({ fit: 'inside', width: 800 }) // Adjust the size as needed
+                .toBuffer()
+
+                const uploadResult = await uploadFile(compressedImage, uid[0].uid)
                 console.log(uploadResult)
             }
 
