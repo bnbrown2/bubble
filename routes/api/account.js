@@ -95,6 +95,10 @@ router
         let editable = false
         const token = req.headers.authorization
 
+        const { username } = req.params
+        const { newBio, newName } = req.body
+        const image = req.file
+
         if (token) {
             const tokenParts = token.split(' ')
 
@@ -110,12 +114,6 @@ router
                 })
             }
         }
-
-
-
-        const { username } = req.params
-        const { newBio, newName } = req.body
-        const image = req.file
 
         if (!username) {
             return res.status(400).json({ error: 'Username not provided' })
