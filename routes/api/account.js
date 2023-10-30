@@ -154,8 +154,14 @@ router
                 .resize({ fit: 'inside', width: 800 }) // Adjust the size as needed
                 .toBuffer()
 
-                const uploadResult = await uploadFile(compressedImage, uid[0].uid)
-                console.log(uploadResult)
+                if (compressedImage) {
+                    // Upload the compressed image to S3
+                    const uploadResult = await uploadFile(compressedImage, uid[0].uid);
+                    console.log(uploadResult);
+                } else {
+                    // Handle the case where image compression failed
+                    return res.status(400).json({ error: 'Image compression failed' });
+                }
             }
 
             if (affectedRows > 0) {
