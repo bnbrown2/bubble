@@ -100,6 +100,8 @@ router
         const { newBio, newName } = req.body
         const image = req.file
 
+        console.log('started put account')
+
         if (token) {
             const tokenParts = token.split(' ')
 
