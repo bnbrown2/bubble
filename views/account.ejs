@@ -28,12 +28,11 @@
       height: 600px;
       border-radius: 50%;
       overflow: hidden;
+      border: 1px solid blue;
     }
     img {
       width: 100%;
       height: auto;
-      border-radius: 50%;
-      border: 1px solid blue;
       object-fit: cover;
       
     }
@@ -69,7 +68,7 @@
   <div class="account-details">
     <h1>Account Details</h1>
     <ul>
-      <li><div id="img-container"><img src="<%= locals.profile_picture %>"></div></li>
+      <li><div id="img-container"><div id="profile-picture"><img src="<%= locals.profile_picture %>"></div></div></li>
       <li><strong>Name:</strong> <%= locals.name %></li>
       <li><strong>Username:</strong> <%= locals.username %></li>
       <li><strong>Bio:</strong> <%= locals.bio %></li>
