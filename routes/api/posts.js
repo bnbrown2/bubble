@@ -24,7 +24,7 @@ router
         const endIndex = page * pageSize;
 
         // Generating array of numbers between startIndex and endIndex for testing purposes
-        const integerArray = Array.from({ length: endIndex - startIndex }, (_, index) => startIndex + index + 1)
+        const integerArray = Array.from({ length: endIndex - startIndex }, (_, index) => startIndex + index)
 
         const responseArray = ({
             page,
@@ -46,6 +46,10 @@ router
             res.set('Content-Type', 'application/json')
             res.send(JSON.stringify(responseArray, null, 2))
         }
+    })
+    .route('/upload')
+    .post( async (req, res) => {
+
     })
 
 
