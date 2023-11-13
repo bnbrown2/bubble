@@ -49,7 +49,7 @@ router
     })
     .route('/upload')
     .post( async (req, res) => {
-
+        res.send('hello')
     })
 
 
