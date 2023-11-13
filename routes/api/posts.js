@@ -23,11 +23,15 @@ router
         const startIndex = (page - 1) * pageSize;
         const endIndex = page * pageSize;
 
+        // Generating array of numbers between startIndex and endIndex for testing purposes
+        const integerArray = Array.from({ length: endIndex - startIndex }, (_, index) => startIndex + index + 1)
+
         res.json({
             page,
             pageSize,
             startIndex,
             endIndex,
+            integers: integerArray,
             message: 'Posts fetched successfully.'
         })
     })
