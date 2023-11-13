@@ -28,7 +28,6 @@ router
             pageSize,
             startIndex,
             endIndex,
-            posts: postsSubset,
             message: 'Posts fetched successfully.'
         })
     })
