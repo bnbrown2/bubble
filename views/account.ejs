@@ -63,6 +63,51 @@
       border-radius: 5px;
       cursor: pointer;
     }
+    .aaa {
+      margin-top: 16px;
+      margin-left: 16px;
+      margin-right: 16px;
+      margin-bottom: 24px;
+      border-bottom-width: 0;
+      padding-bottom: 0;
+      display: flex;
+      align-items: stretch;
+      flex-direction: row;
+      position: relative;
+    }
+    .aab {
+      justify-content: center;
+      margin-right: 28px;
+      flex-direction: column;
+      display: flex;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .aac {
+      flex-basis: 0;
+      flex-grow: 1;
+      padding-top: 0;
+      min-width: 0;
+      margin-top: 0;
+      margin-bottom: 0;
+      border-bottom-width: 0;
+      padding-bottom: 0;
+      flex-shrink: 1;
+      border-left-width: 0;
+      padding-left: 0;
+      font-size: 100%;
+      flex-direction: column;
+      border-right-width: 0;
+      box-sizing: border-box;
+      border-top-width: 0;
+      display: flex;
+      padding-right: 0;
+      align-items: stretch;
+      position: relative;
+      margin-left: 0;
+      vertical-align: baseline;
+      margin-right: 0;
+    }
   </style>
 </head>
 <body>
@@ -71,9 +116,22 @@
     <button type="submit">Search</button><br><br>
   </form>
   <div class="account-details">
-    <h1>Account Details</h1>
+    <header class="aaa">
+      <div class="aab">
+
+      </div>
+      <section class="aac">
+
+      </section>
+    </header>
     <ul>
-      <li><div id="img-container"><div id="profile-picture"><img src="<%= locals.profile_picture %>"></div></div></li>
+      <li>
+        <div id="img-container">
+          <div id="profile-picture">
+            <img src="<%= locals.profile_picture %>">
+          </div>
+        </div>
+      </li>
       <li><strong>Name:</strong> <%= locals.name %></li>
       <li><strong>Username:</strong> <%= locals.username %></li>
       <li><strong>Bio:</strong> <%= locals.bio %></li>
