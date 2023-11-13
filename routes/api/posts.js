@@ -47,10 +47,10 @@ router
             res.send(JSON.stringify(responseArray, null, 2))
         }
     })
-    .route('/upload')
+    /*.route('/upload')
     .post( async (req, res) => {
         res.send('hello')
-    })
+    })*/
 
 
 
