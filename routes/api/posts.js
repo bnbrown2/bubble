@@ -59,8 +59,10 @@ router
         const image = req.file
 
         if (!username || !image) {
+            console.log('no username or image')
             return res.status(400).json({ error: 'Missing information from client' })
         }
+
 
         // TODO: add authentication by comparing token and username
         
