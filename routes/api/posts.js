@@ -82,7 +82,7 @@ router
             // Create post row.
             const result = await connection.execute(
                 'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?)',
-                [uid, true, caption]
+                [uid[0].uid, true, caption]
             )
             const postId = result.rows[0].postID
 
