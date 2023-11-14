@@ -90,6 +90,7 @@ router
             const postIdResult = await connection.execute(
                 'SELECT LAST_INSERT_ID() as postID'
             )
+            console.log(postIdResult)
             const postId = postIdResult.rows[0].postID;
 
             connection.release()
