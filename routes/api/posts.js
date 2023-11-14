@@ -52,6 +52,7 @@ router
 router
     .route('/upload')
     .post( upload.single('image'), async (req, res) => {
+        console.log('route was called')
         let editable = false
         const token = req.headers.authorization
         const { username, caption } = req.body
