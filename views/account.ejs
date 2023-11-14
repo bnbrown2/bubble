@@ -151,7 +151,7 @@
       </form>
 
       <h2>Upload Post</h2>
-      <form id="postForm" onsubmit="uploadPost()" enctype="multipart/form-data">
+      <form id="postForm" onsubmit="uploadPost('<%= locals.username %>')" enctype="multipart/form-data">
         <label for="image">Image:</label>
         <input type="file" id="uploadImage" name="image" accept="image/jpeg"><br>
         <label for="caption">Caption:</label>
@@ -202,7 +202,7 @@
     </script>
 
 <script>
-  function uploadPost() {
+  function uploadPost(username) {
   const caption = document.getElementById("caption").value;
 
   // Get the file input element with the new id
@@ -211,6 +211,7 @@
 
   // Create a FormData object to send the file
   const formData = new FormData();
+  formData.append('username', username); // Include the username
   formData.append('caption', caption);
   formData.append('image', imageFile);
 
