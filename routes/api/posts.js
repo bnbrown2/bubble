@@ -71,13 +71,13 @@ router
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
 
-            // Get uid
-            const [ userResult ] = await connection.execute(
+            console.log(username)
+
+            let uid = []
+            uid = await connection.execute(
                 'SELECT uid FROM accounts WHERE username = ?',
                 [username]
             )
-
-            const uid = userResult[0].uid
             
             // Create post row.
             const result = await connection.execute(
