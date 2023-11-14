@@ -84,7 +84,7 @@ router
             )
             
             // TODO: determine what the key should be based off of the new post rows id
-            const postId = result.rows[0].postId
+            const { postId } = result.rows[0].postId
 
             connection.release()
 
