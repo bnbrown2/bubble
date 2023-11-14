@@ -84,22 +84,23 @@ router
                 'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?)',
                 [uid, true, caption]
             )
-            
             const postId = result.rows[0].postID
 
             connection.release()
 
+            const affectedRows = result ? result.affectedRows : 0
+
             // POTENTIAL BUG: make sure if a post is made in rd2, a post is made in s3.
             // POTENTIAL SOLUTION: just delete the post row if uploadResult says image wasn't uploaded
+            console.log('about to upload the photo to s3. Row is in rds')
             const key = `/posts/${username}/${postId}`
             const uploadResult = await uploadPost(image, key);
             console.log(uploadResult)
+
         } catch(error) {
             console.error('Error making post:', error)
             return res.status(500).json({ error: 'Internal server error'})
         }
-        
-        res.send('hello')
     })
 
 
