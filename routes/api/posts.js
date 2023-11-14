@@ -10,7 +10,7 @@ const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } })
 const config = require('../../config')
 const secretKey = config.secretKey
 
-const { uploadFile } = require('../../s3')
+const { uploadFile, uploadProfilePicture, uploadPost } = require('../../s3')
 
 
 
