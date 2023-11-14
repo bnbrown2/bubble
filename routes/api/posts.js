@@ -91,7 +91,7 @@ router
                 'SELECT LAST_INSERT_ID() as postID'
             )
             console.log(postIdResult)
-            const postId = postIdResult.rows[0].postID;
+            const postId = postIdResult[0].postID;
 
             connection.release()
 
