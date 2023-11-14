@@ -13,8 +13,9 @@ const s3 = new S3({
     secretAccessKey
 })
 
-// uploads a file to s3
-function uploadFile(dataBuffer, uid) {
+
+// uploads a profile picture to s3
+function uploadProfilePicture(dataBuffer, uid) {
     const uploadParams = {
         Bucket: bucketName,
         Body: dataBuffer,
@@ -24,7 +25,21 @@ function uploadFile(dataBuffer, uid) {
 
     return s3.upload(uploadParams).promise();
 }
-exports.uploadFile = uploadFile
+exports.uploadProfilePicture = uploadProfilePicture
+
+
+// uploads a post to s3
+function uploadPost(dataBuffer, key) {
+    const uploadParams = {
+        Bucket: bucketName,
+        Body: dataBuffer,
+        Key: key,
+        ContentType: 'image/jpeg'
+    }
+
+    return s3.upload(uploadParams).promise();
+}
+exports.uploadPost = uploadPost
 
 
 // downloads a file from s3

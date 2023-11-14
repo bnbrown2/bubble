@@ -10,7 +10,7 @@ const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } })
 const config = require('../../config')
 const secretKey = config.secretKey
 
-const { uploadFile } = require('../../s3')
+const { uploadFile, uploadProfilePicture } = require('../../s3')
 
 router
     .route('/:username')
@@ -156,7 +156,7 @@ router
 
                 if (compressedImage) {
                     // Upload the compressed image to S3
-                    const uploadResult = await uploadFile(compressedImage, uid[0].uid);
+                    const uploadResult = await uploadProfilePicture(compressedImage, uid[0].uid);
                     console.log(uploadResult);
                 } else {
                     // Handle the case where image compression failed

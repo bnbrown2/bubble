@@ -47,10 +47,63 @@ router
             res.send(JSON.stringify(responseArray, null, 2))
         }
     })
-    /*.route('/upload')
-    .post( async (req, res) => {
+
+
+router
+    .route('/upload')
+    .post( upload.single('image'), async (req, res) => {
+        let editable = false
+        const token = req.headers.authorization
+        const { username, caption } = req.body
+        const image = req.file
+
+        if (!username || !image) {
+            return res.status(400).json({ error: 'Missing information from client' })
+        }
+
+        // TODO: add authentication by comparing token and username
+        
+        try {
+            // Database stuff for making a post
+            const connectionPool = req.app.get('mariadbPool')
+            const connection = await connectionPool.getConnection()
+
+            // Get uid. I wish we didn't need an entire query for this but I don't know any other way
+            const uid = await connection.execute(
+                'SELECT uid FROM accounts WHERE username = ?',
+                [username]
+            )
+            
+            // Create post row.
+            const result = await connection.execute(
+                'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?) RETURNING postID',
+                [uid, true, caption]
+            )
+            
+            // TODO: determine what the key should be based off of the new post rows id
+            postId = result.rows[0].postId
+
+            connection.release()
+
+            // POTENTIAL BUG: make sure if a post is made in rd2, a post is made in s3.
+            // POTENTIAL SOLUTION: just delete the post row if uploadResult says image wasn't uploaded
+            const key = `/posts/${username}/${postId}`
+            const uploadResult = await uploadPost(image, key);
+            console.log(uploadResult)
+        } catch(error) {
+            console.error('Error making post:', error)
+            return res.status(500).json({ error: 'Internal server error'})
+        }
+        
         res.send('hello')
-    })*/
+    })
+
+
+router
+    .route('/delete')
+    .delete( async (req, res) => {
+        res.send('hello')
+    })
 
 
 
