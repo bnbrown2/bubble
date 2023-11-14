@@ -72,7 +72,7 @@ router
             const connection = await connectionPool.getConnection()
 
             // Get uid. I wish we didn't need an entire query for this but I don't know any other way
-            const uid = await connection.execute(
+            const { uid } = await connection.execute(
                 'SELECT uid FROM accounts WHERE username = ?',
                 [username]
             )
@@ -84,7 +84,7 @@ router
             )
             
             // TODO: determine what the key should be based off of the new post rows id
-            const { postId } = result.rows[0].postId
+            const postId = result.rows[0].postId
 
             connection.release()
 
