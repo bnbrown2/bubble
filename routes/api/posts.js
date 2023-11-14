@@ -85,8 +85,12 @@ router
                 'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?)',
                 [uid[0].uid, true, caption]
             )
-            console.log(result)
-            const postId = result[0].postID
+            
+            // Get postID
+            const postIdResult = await connection.execute(
+                'SELECT LAST_INSERT_ID() as postID'
+            )
+            const postId = postIdResult.rows[0].postID;
 
             connection.release()
 
@@ -98,6 +102,12 @@ router
             const key = `/posts/${username}/${postId}`
             const uploadResult = await uploadPost(image, key);
             console.log(uploadResult)
+
+            if (affectedRows > 0) {
+                return res.status(200).json({ message: `Updated ${affectedRows} row`})
+            } else {
+                return res.status(404).json({ error: 'Updated 0 rows'})
+            }
 
         } catch(error) {
             console.error('Error making post:', error)
