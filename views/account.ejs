@@ -149,6 +149,15 @@
         <input type="file" id="image" name="image" accept="image/jpeg"><br><br>
         <button type="submit">Update Account</button>
       </form>
+
+      <h2>Upload Post</h2>
+      <form id="postForm" onsubmit="uploadPost()" enctype="multipart/form-data">
+        <label for="image">Image:</label>
+        <input type="file" id="uploadImage" name="image" accept="image/jpeg"><br>
+        <label for="caption">Caption:</label>
+        <input type="text" id="caption" name="caption" value="<%= locals.name %>"><br><br>
+        <button type="submit">Upload Post</button>
+      </form>
     </div>
 
     <% if (!locals.editable) { %>
@@ -191,6 +200,37 @@
   }
 }
     </script>
+
+<script>
+  function uploadPost() {
+  const caption = document.getElementById("caption").value;
+
+  // Get the file input element with the new id
+  const imageInput = document.querySelector('input#uploadImage[type="file"]');
+  const imageFile = imageInput.files[0];
+
+  // Create a FormData object to send the file
+  const formData = new FormData();
+  formData.append('caption', caption);
+  formData.append('image', imageFile);
+
+  try {
+    fetch('/api/posts/upload', {
+      method: 'POST',
+      body: formData
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Error uploading post');
+        }
+        console.log('Post uploaded successfully!');
+      })
+      .catch(error => console.error('Error uploading post:', error));
+  } catch (error) {
+    console.error('Error uploading post:', error);
+  }
+}
+</script>
 
 <script>
   function showEditForm(username) {
