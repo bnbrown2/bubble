@@ -71,15 +71,17 @@ router
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
 
-            // Get uid. I wish we didn't need an entire query for this but I don't know any other way
-            const { uid } = await connection.execute(
+            // Get uid
+            const [ userResult ] = await connection.execute(
                 'SELECT uid FROM accounts WHERE username = ?',
                 [username]
             )
+
+            const uid = userResult[0].uid
             
             // Create post row.
             const result = await connection.execute(
-                'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?) RETURNING postID',
+                'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?)',
                 [uid, true, caption]
             )
             
