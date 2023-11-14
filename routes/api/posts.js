@@ -85,6 +85,7 @@ router
                 'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?)',
                 [uid[0].uid, true, caption]
             )
+            console.log(result)
             const postId = result[0].postID
 
             connection.release()
