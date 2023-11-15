@@ -1,21 +1,69 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Render JSON Data</title>
+  <title>Instagram-like Feed</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #fafafa;
+    }
+
+    .feed {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding-top: 20px;
+    }
+
+    .post {
+      max-width: 300px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+    }
+
+    .post img {
+      width: 100%;
+      height: auto;
+      max-height: 300px;
+      object-fit: cover;
+    }
+
+    .post .text-post {
+      padding: 20px;
+    }
+
+    .post h2,
+    .post .text-post {
+      margin: 10px 0;
+    }
+  </style>
 </head>
 <body>
+  <div class="feed">
+    <% rows.forEach(function(post) { %>
+      <div class="post">
+        <% if (post.photo === 1) { %>
+          <img src="<%= post.photo_url %>" alt="Post Image">
+        <% } %>
 
-  <% rows.forEach(function(post) { %>
-    <div class="post">
-      <h2>Post ID: <%= post.postID %></h2>
-      <p>User: <%= post.username %> (<%= post.name %>)</p>
-      <p>Photo URL: <%= post.photo_url %></p>
-      <p>Caption: <%= post.caption %></p>
-      <p>Profile Picture: <%= post.profile_picture %></p>
-      <p>API URL: <%= post.url %></p>
-      <p>HTML URL: <%= post.html_url %></p>
-    </div>
-  <% }); %>
+        <div class="<%= post.photo === 1 ? 'text-post' : '' %>">
+          <% if (post.caption) { %>
+            <h2>Caption: <%= post.caption %></h2>
+          <% } %>
+        </div>
 
+        <h2>Post ID: <%= post.postID %></h2>
+        <p>User: <%= post.username %> (<%= post.name %>)</p>
+        <p>Profile Picture: <%= post.profile_picture %></p>
+        <p>API URL: <%= post.url %></p>
+        <p>HTML URL: <%= post.html_url %></p>
+      </div>
+    <% }); %>
+  </div>
 </body>
 </html>
