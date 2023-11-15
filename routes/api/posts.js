@@ -99,7 +99,6 @@ router
 
             // POTENTIAL BUG: make sure if a post is made in rd2, a post is made in s3.
             // POTENTIAL SOLUTION: just delete the post row if uploadResult says image wasn't uploaded
-            console.log(image)
             const key = `/posts/${username}/${postId}`
             const uploadResult = await uploadPost(image, key);
             console.log(uploadResult)

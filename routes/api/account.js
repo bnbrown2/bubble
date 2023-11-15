@@ -144,7 +144,6 @@ router
 
             const affectedRows = result ? result.affectedRows : 0
             console.log(`${affectedRows} rows affected`)
-            console.log(image)
             if (image) {
                 if (!Buffer.isBuffer(image.buffer) || !image.mimetype.includes('image')) {
                     return res.status(400).json({ error: 'Invalid image data' });

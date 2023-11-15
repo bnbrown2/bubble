@@ -23,6 +23,8 @@ function uploadProfilePicture(dataBuffer, uid) {
         ContentType: 'image/jpeg'
     }
 
+    console.log(uploadParams)
+
     return s3.upload(uploadParams).promise();
 }
 exports.uploadProfilePicture = uploadProfilePicture
@@ -36,6 +38,8 @@ function uploadPost(dataBuffer, key) {
         Key: key,
         ContentType: 'image/jpeg'
     }
+
+    console.log(uploadParams)
 
     return s3.upload(uploadParams).promise();
 }
