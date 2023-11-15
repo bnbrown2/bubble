@@ -23,7 +23,48 @@ router
         const startIndex = (page - 1) * pageSize;
         const endIndex = page * pageSize;
 
-        // Generating array of numbers between startIndex and endIndex for testing purposes
+
+        try {
+            // Database stuff for making a post
+            const connectionPool = req.app.get('mariadbPool')
+            const connection = await connectionPool.getConnection()
+
+            let result = []
+            result = await connection.execute(
+                'SELECT * FROM posts order by postID DESC limit ? offset ?',
+                [pageSize, (page-1) * pageSize]
+            )
+
+            connection.release()
+
+            const responseArray = result.map((account) => ({
+                postID: account.postID,
+                uid: account.uid,
+                photo: account.photo,
+                caption: account.caption,
+                profile_picture: `/image/profile_picture/u/${account.uid}`,
+                url: `/api/account/${account.username}`,
+                html_url: `/account/${account.username}`
+            }))
+
+            if (acceptHeader.includes('application/json')) {
+                res.json(responseArray)
+            }
+    
+            else {
+                res.set('Content-Type', 'application/json')
+                res.send(JSON.stringify(responseArray, null, 2))
+            }
+
+
+        } catch(error) {
+            console.error('Error making post feed:', error)
+            return res.status(500).json({ error: 'Internal server error'})
+        }
+
+
+
+        /*// Generating array of numbers between startIndex and endIndex for testing purposes
         const integerArray = Array.from({ length: endIndex - startIndex }, (_, index) => startIndex + index)
 
         const responseArray = ({
@@ -36,16 +77,8 @@ router
         })
 
         // the following code is so the response looks good if client is a browser
-        const acceptHeader = req.get('Accept');
+        const acceptHeader = req.get('Accept');*/
 
-        if (acceptHeader.includes('application/json')) {
-            res.json(responseArray)
-        }
-
-        else {
-            res.set('Content-Type', 'application/json')
-            res.send(JSON.stringify(responseArray, null, 2))
-        }
     })
 
 
