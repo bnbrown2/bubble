@@ -7,7 +7,7 @@ router.route('/')
         const p = parseInt(req.query.p) || 1
         const ps = parseInt(req.query.ps) || 10
     
-        const apiUrl = `http://54.202.77.126:8080/api/posts/feed?p=${p}&pn=${pn}`
+        const apiUrl = `http://54.202.77.126:8080/api/posts/feed?p=${p}&pn=${ps}`
 
         try {
             const response = await axios.get(apiUrl)
