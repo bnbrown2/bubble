@@ -43,6 +43,8 @@ router
                 photo: account.photo,
                 photo_url: `/image/posts/${account.username}/${account.postID}`,
                 caption: account.caption,
+                username: account.username,
+                name: account.name,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
                 url: `/api/account/${account.username}`,
                 html_url: `/account/${account.username}`
