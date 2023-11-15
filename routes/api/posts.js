@@ -41,6 +41,7 @@ router
                 postID: account.postID,
                 uid: account.uid,
                 photo: account.photo,
+                photo_url: `/image/posts/${account.username}/${account.postID}`,
                 caption: account.caption,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
                 url: `/api/account/${account.username}`,
