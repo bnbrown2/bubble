@@ -51,10 +51,12 @@ const webAccountRouter = require('./routes/web/webAccount')
 const webLoginRouter = require('./routes/web/webLogin')
 const webRegisterRouter = require('./routes/web/webRegister')
 const webSearchRouter = require('./routes/web/webSearch')
+const webFeedRouter = require('./routes/web/webFeed')
 app.use('/account', webAccountRouter)
 app.use('/login', webLoginRouter)
 app.use('/register', webRegisterRouter)
 app.use('/search', webSearchRouter)
+app.use('/feed', webFeedRouter)
 
 app.get('/', (req, res) => {
   res.redirect('/login')

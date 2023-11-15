@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Render JSON Data</title>
+</head>
+<body>
+
+  <% jsonData.forEach(function(post) { %>
+    <div class="post">
+      <h2>Post ID: <%= post.postID %></h2>
+      <p>User: <%= post.username %> (<%= post.name %>)</p>
+      <p>Photo URL: <%= post.photo_url %></p>
+      <p>Caption: <%= post.caption %></p>
+      <p>Profile Picture: <%= post.profile_picture %></p>
+      <p>API URL: <%= post.url %></p>
+      <p>HTML URL: <%= post.html_url %></p>
+    </div>
+  <% }); %>
+
+</body>
+</html>
