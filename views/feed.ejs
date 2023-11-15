@@ -12,9 +12,9 @@
 
     .feed {
       display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      flex-direction: column;
       gap: 20px;
+      align-items: center;
       padding-top: 20px;
     }
 
@@ -26,6 +26,20 @@
       overflow: hidden;
     }
 
+    .post .profile-info {
+      display: flex;
+      align-items: center;
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .post .profile-info img {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
     .post img {
       width: 100%;
       height: auto;
@@ -33,12 +47,12 @@
       object-fit: cover;
     }
 
-    .post .text-post {
+    .post .caption {
       padding: 20px;
     }
 
     .post h2,
-    .post .text-post {
+    .post .caption {
       margin: 10px 0;
     }
   </style>
@@ -47,19 +61,22 @@
   <div class="feed">
     <% rows.forEach(function(post) { %>
       <div class="post">
+        <div class="profile-info">
+          <img src="<%= post.profile_picture %>" alt="Profile Picture">
+          <p><strong><%= post.username %></strong></p>
+        </div>
+
         <% if (post.photo === 1) { %>
           <img src="<%= post.photo_url %>" alt="Post Image">
         <% } %>
 
-        <div class="<%= post.photo === 1 ? 'text-post' : '' %>">
+        <div class="caption">
           <% if (post.caption) { %>
             <h2>Caption: <%= post.caption %></h2>
           <% } %>
         </div>
 
         <h2>Post ID: <%= post.postID %></h2>
-        <p>User: <%= post.username %> (<%= post.name %>)</p>
-        <p>Profile Picture: <%= post.profile_picture %></p>
         <p>API URL: <%= post.url %></p>
         <p>HTML URL: <%= post.html_url %></p>
       </div>
