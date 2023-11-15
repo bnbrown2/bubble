@@ -42,7 +42,7 @@ router
 
         //res.status(200).render('search', { rows } )
         // the following code is so the response looks good if client is a browser
-        const acceptHeader = req.get('Accept');
+        const acceptHeader = req.get('Accept')
 
         if (acceptHeader.includes('application/json')) {
             res.json(responseArray)

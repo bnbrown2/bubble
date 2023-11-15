@@ -47,11 +47,10 @@ router
                 html_url: `/account/${account.username}`
             }))
 
+            const acceptHeader = req.get('Accept')
             if (acceptHeader.includes('application/json')) {
                 res.json(responseArray)
-            }
-    
-            else {
+            } else {
                 res.set('Content-Type', 'application/json')
                 res.send(JSON.stringify(responseArray, null, 2))
             }
