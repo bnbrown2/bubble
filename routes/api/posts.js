@@ -31,7 +31,7 @@ router
 
             let result = []
             result = await connection.execute(
-                'SELECT * FROM posts order by postID DESC limit ? offset ?',
+                'SELECT posts.*, accounts.username AS username, accounts.name AS name FROM posts JOIN accounts ON posts.uid = accounts.uid order by postID DESC limit ? offset ?',
                 [pageSize, (page-1) * pageSize]
             )
 
