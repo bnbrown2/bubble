@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Instagram-like Feed</title>
+  <title>Bubble</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -19,7 +19,7 @@
     }
 
     .post {
-      width: 450px;
+      width: 450px; /* Fixed post width */
       background-color: white;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -67,7 +67,9 @@
         </div>
 
         <% if (post.photo === 1) { %>
-          <img src="<%= post.photo_url %>" alt="Post Image">
+          <div class="post-image">
+            <img src="<%= post.photo_url %>" alt="Post Image">
+          </div>
         <% } %>
 
         <div class="caption">
