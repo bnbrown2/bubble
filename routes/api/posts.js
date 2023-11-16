@@ -134,8 +134,15 @@ router
 
             // POTENTIAL BUG: make sure if a post is made in rd2, a post is made in s3.
             // POTENTIAL SOLUTION: just delete the post row if uploadResult says image wasn't uploaded
+
+            const compressedImage = await sharp(image.buffer)
+                .resize({ width: 450 })
+                .jpeg({ quality: 1 })
+
+
+
             const key = `posts/${username}/${postId}`
-            const uploadResult = await uploadPost(image.buffer, key);
+            const uploadResult = await uploadPost(compressedImage, key);
             console.log(uploadResult)
 
             if (affectedRows > 0) {

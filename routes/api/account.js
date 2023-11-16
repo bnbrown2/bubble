@@ -150,7 +150,7 @@ router
                 }
 
                 const compressedImage = await sharp(image.buffer)
-                .resize({ fit: 'inside', width: 800 }) // Adjust the size as needed
+                .resize({ fit: 'inside', width: 450 }) // Adjust the size as needed
                 .toBuffer()
 
                 if (compressedImage) {
