@@ -89,10 +89,21 @@
       <!-- Defining the pattern -->
       <defs>
         <pattern id="wavePattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-          <rect x="0" y="0" width="20" height="20" fill="rgba(230, 64, 218, 0.8)" />
-          <rect x="5" y="0" width="20" height="20" fill="rgba(64, 75, 230, 0.8)" />
-          <rect x="10" y="0" width="20" height="20" fill="rgba(0, 212, 255, 0.8)" />
-          <rect x="15" y="0" width="20" height="20" fill="rgba(0, 255, 42, 0.8)" />
+          <!-- Adding circles with gradients -->
+          <circle cx="5" cy="5" r="3" fill="url(#gradient1)" />
+          <circle cx="12" cy="15" r="2" fill="url(#gradient2)" />
+          <!-- Adding diagonal lines -->
+          <line x1="0" y1="0" x2="20" y2="20" stroke="rgba(230, 64, 218, 0.6)" stroke-width="0.5" />
+          <line x1="20" y1="0" x2="0" y2="20" stroke="rgba(0, 255, 42, 0.6)" stroke-width="0.5" />
+          <!-- Adding gradients -->
+          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(230, 64, 218, 0.8)" />
+            <stop offset="100%" stop-color="rgba(64, 75, 230, 0.8)" />
+          </linearGradient>
+          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(0, 212, 255, 0.8)" />
+            <stop offset="100%" stop-color="rgba(0, 255, 42, 0.8)" />
+          </linearGradient>
         </pattern>
       </defs>
     
