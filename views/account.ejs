@@ -186,7 +186,11 @@
   try {
     fetch(`/api/account/${username}`, {
       method: 'PUT',
-      body: formData
+      body: formData,
+      headers: {
+        // Set content type to multipart form data
+        'Content-Type': 'multipart/form-data'
+      }
     })
       .then(response => {
         if (!response.ok) {
@@ -218,7 +222,11 @@
   try {
     fetch('/api/posts/upload', {
       method: 'POST',
-      body: formData
+      body: formData,
+      headers: {
+        // Set content type to multipart form data
+        'Content-Type': 'multipart/form-data'
+      }
     })
       .then(response => {
         if (!response.ok) {
