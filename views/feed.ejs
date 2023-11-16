@@ -89,16 +89,17 @@
         <!-- Creating a wavy pattern -->
         <pattern id="wavePattern" x="0" y="0" width="50" height="50" patternUnits="userSpaceOnUse">
           <!-- Wave shapes -->
-          <path d="M-10,50 Q0,60 10,50 T30,50 Q40,40 50,50 T70,50 Q80,60 90,50 T110,50" fill="none" stroke="rgba(230, 64, 218, 0.8)" stroke-width="1" />
-          <path d="M-10,50 Q0,55 10,50 T30,50 Q40,45 50,50 T70,50 Q80,55 90,50 T110,50" fill="none" stroke="rgba(64, 75, 230, 0.8)" stroke-width="1" />
-          <path d="M-10,50 Q0,50 10,50 T30,50 Q40,50 50,50 T70,50 Q80,50 90,50 T110,50" fill="none" stroke="rgba(0, 212, 255, 0.8)" stroke-width="1" />
-          <path d="M-10,50 Q0,45 10,50 T30,50 Q40,55 50,50 T70,50 Q80,45 90,50 T110,50" fill="none" stroke="rgba(0, 255, 42, 0.8)" stroke-width="1" />
+          <path d="M0 50 C 20 30, 40 70, 60 50 S 100 70, 120 50 V 100 H 0 Z" fill="rgba(230, 64, 218, 0.8)" />
+          <path d="M-20 50 C 0 30, 20 70, 40 50 S 80 70, 100 50 V 100 H -20 Z" fill="rgba(64, 75, 230, 0.8)" />
+          <path d="M-40 50 C -20 30, 0 70, 20 50 S 60 70, 80 50 V 100 H -40 Z" fill="rgba(0, 212, 255, 0.8)" />
+          <path d="M-60 50 C -40 30, -20 70, 0 50 S 40 70, 60 50 V 100 H -60 Z" fill="rgba(0, 255, 42, 0.8)" />
         </pattern>
       </defs>
       
       <!-- Using the pattern as a background -->
       <rect x="0" y="0" width="100%" height="100%" fill="url(#wavePattern)" />
     </svg>
+    
     
     
     
