@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Bubble</title>
+  <title>Instagram-like Feed</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -24,13 +24,14 @@
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       overflow: hidden;
+      padding: 10px;
     }
 
     .post .profile-info {
       display: flex;
       align-items: center;
-      padding: 10px;
       border-bottom: 1px solid #eee;
+      margin-bottom: 10px;
     }
 
     .post .profile-info img {
@@ -41,18 +42,19 @@
     }
 
     .post img {
-      width: 100%; /* Adjust the width as needed */
+      max-width: 100%; /* Adjust the width as needed */
       height: auto;
       object-fit: cover;
+      margin-bottom: 10px;
     }
 
     .post .caption {
-      padding: 20px;
+      font-weight: bold;
+      margin-bottom: 10px;
     }
 
-    .post h2,
-    .post .caption {
-      margin: 10px 0;
+    .post h2 {
+      margin-bottom: 5px;
     }
   </style>
 </head>
@@ -62,7 +64,7 @@
       <div class="post">
         <div class="profile-info">
           <img src="<%= post.profile_picture %>" alt="Profile Picture">
-          <p><strong><%= post.username %></strong></p>
+          <p><strong><%= post.username %></strong> <%= post.caption %></p>
         </div>
 
         <% if (post.photo === 1) { %>
@@ -70,12 +72,6 @@
             <img src="<%= post.photo_url %>" alt="Post Image">
           </div>
         <% } %>
-
-        <div class="caption">
-          <% if (post.caption) { %>
-            <h2>Caption: <%= post.caption %></h2>
-          <% } %>
-        </div>
 
         <h2>Post ID: <%= post.postID %></h2>
         <p>API URL: <%= post.url %></p>
