@@ -32,8 +32,6 @@
       width: 100%;
       height: 100%;
       z-index: 0; /* Place behind content */
-
-      filter: blur(25px);
     }
 
     .post {
@@ -88,25 +86,16 @@
     <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none">
       <!-- Defining the pattern -->
       <defs>
+        <!-- Defining a wavy pattern -->
         <pattern id="wavePattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-          <!-- Adding circles with gradients -->
-          <circle cx="5" cy="5" r="3" fill="url(#gradient1)" />
-          <circle cx="12" cy="15" r="2" fill="url(#gradient2)" />
-          <!-- Adding diagonal lines -->
-          <line x1="0" y1="0" x2="20" y2="20" stroke="rgba(230, 64, 218, 0.6)" stroke-width="0.5" />
-          <line x1="20" y1="0" x2="0" y2="20" stroke="rgba(0, 255, 42, 0.6)" stroke-width="0.5" />
-          <!-- Adding gradients -->
-          <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="rgba(230, 64, 218, 0.8)" />
-            <stop offset="100%" stop-color="rgba(64, 75, 230, 0.8)" />
-          </linearGradient>
-          <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="rgba(0, 212, 255, 0.8)" />
-            <stop offset="100%" stop-color="rgba(0, 255, 42, 0.8)" />
-          </linearGradient>
+          <!-- Adding wavy lines -->
+          <path d="M-5,5 Q0,10 5,5 T15,5 T25,5" fill="none" stroke="rgba(230, 64, 218, 0.8)" stroke-width="0.5" />
+          <path d="M0,0 Q5,5 10,0 T20,0 T30,0" fill="none" stroke="rgba(64, 75, 230, 0.8)" stroke-width="0.5" />
+          <path d="M-5,0 Q0,5 5,0 T15,0 T25,0" fill="none" stroke="rgba(0, 212, 255, 0.8)" stroke-width="0.5" />
+          <path d="M0,-5 Q5,0 10,-5 T20,-5 T30,-5" fill="none" stroke="rgba(0, 255, 42, 0.8)" stroke-width="0.5" />
         </pattern>
       </defs>
-    
+      
       <!-- Using the pattern as a background -->
       <rect x="0" y="0" width="100" height="100" fill="url(#wavePattern)" />
     </svg>
