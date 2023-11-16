@@ -35,7 +35,8 @@ router
             url: `/api/account/${account.username}`,
             html_url: `/account/${account.username}`,
             followers_url: `/api/account/${account.username}/followers`,
-            following_url: `/api/account/${account.username}/following`
+            following_url: `/api/account/${account.username}/following`,
+            bio: account.bio
         }))
 
 
