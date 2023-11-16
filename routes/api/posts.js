@@ -137,7 +137,7 @@ router
 
             const compressedImage = await sharp(image.buffer)
                 .resize({ width: 450 })
-                .jpeg({ quality: 50 })
+                .jpeg({ quality: 100 })
 
 
 
