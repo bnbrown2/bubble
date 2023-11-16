@@ -59,6 +59,11 @@
     .post h2 {
       margin-bottom: 5px;
     }
+
+    a {
+      text-decoration: none; /* Remove underline */
+      color: inherit; /* Use the color defined by the parent element (black in this case) */
+    }
   </style>
 </head>
 <body>
@@ -66,10 +71,10 @@
     <% rows.forEach(function(post) { %>
       <div class="post">
         <div class="profile-info">
-          <a href="<%= post.url %>"> <!-- Link to user's account -->
+          <a href="<%= post.html_url %>"> <!-- Link to user's account -->
             <img src="<%= post.profile_picture %>" alt="Profile Picture">
           </a>
-          <a href="<%= post.url %>"> <!-- Link to user's account -->
+          <a href="<%= post.html_url %>"> <!-- Link to user's account -->
             <p><strong><%= post.username %></strong></p>
           </a>
         </div>
@@ -80,10 +85,8 @@
           </div>
         <% } %>
   
-        <p><a href="<%= post.url %>"><strong><%= post.username %></strong></a> <%= post.caption %></p>
+        <p><a href="<%= post.html_url %>"><strong><%= post.username %></strong></a> <%= post.caption %></p>
         <h2>Post ID: <%= post.postID %></h2>
-        <p>API URL: <%= post.url %></p>
-        <p>HTML URL: <%= post.html_url %></p>
       </div>
     <% }); %>
   </div>
