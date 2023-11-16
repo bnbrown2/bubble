@@ -21,21 +21,22 @@
 
     .post {
       width: 400px; /* Fixed post width */
-      background-color: white;
+      background-color: black;
       border-radius: 8px;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
       overflow: hidden;
       padding: 10px;
+      color: #bbb
     }
 
-    .profile-info {
+    .post .profile-info {
       display: flex;
       align-items: center;
       border-bottom: 1px solid #eee;
       margin-bottom: 10px;
     }
 
-    .profile-info img {
+    .post .profile-info img {
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -47,7 +48,6 @@
       height: auto;
       object-fit: cover;
       margin-bottom: 10px;
-      border-radius: 8px; /* Rounded corners for the image */
     }
 
     .post .caption {
@@ -57,11 +57,6 @@
 
     .post h2 {
       margin-bottom: 5px;
-    }
-
-    .post-content {
-      display: flex;
-      flex-direction: column;
     }
   </style>
 </head>
@@ -74,16 +69,14 @@
           <p><strong><%= post.username %></strong></p>
         </div>
 
-        <div class="post-content">
-          <% if (post.photo === 1) { %>
+        <% if (post.photo === 1) { %>
+          <div class="post-image">
             <img src="<%= post.photo_url %>" alt="Post Image">
-          <% } %>
-          
-          <div class="caption">
-            <p><strong><%= post.username %></strong> <%= post.caption %></p>
           </div>
-        </div>
+        <% } %>
 
+        <p><strong><%= post.username %></strong></p>
+        <p><%= post.caption %></p>
         <h2>Post ID: <%= post.postID %></h2>
         <p>API URL: <%= post.url %></p>
         <p>HTML URL: <%= post.html_url %></p>
