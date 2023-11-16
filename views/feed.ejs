@@ -28,14 +28,14 @@
       padding: 10px;
     }
 
-    .post .profile-info {
+    .profile-info {
       display: flex;
       align-items: center;
       border-bottom: 1px solid #eee;
       margin-bottom: 10px;
     }
 
-    .post .profile-info img {
+    .profile-info img {
       width: 30px;
       height: 30px;
       border-radius: 50%;
@@ -47,6 +47,7 @@
       height: auto;
       object-fit: cover;
       margin-bottom: 10px;
+      border-radius: 8px; /* Rounded corners for the image */
     }
 
     .post .caption {
@@ -57,6 +58,11 @@
     .post h2 {
       margin-bottom: 5px;
     }
+
+    .post-content {
+      display: flex;
+      flex-direction: column;
+    }
   </style>
 </head>
 <body>
@@ -65,14 +71,18 @@
       <div class="post">
         <div class="profile-info">
           <img src="<%= post.profile_picture %>" alt="Profile Picture">
-          <p><strong><%= post.username %></strong> <%= post.caption %></p>
+          <p><strong><%= post.username %></strong></p>
         </div>
 
-        <% if (post.photo === 1) { %>
-          <div class="post-image">
+        <div class="post-content">
+          <% if (post.photo === 1) { %>
             <img src="<%= post.photo_url %>" alt="Post Image">
+          <% } %>
+          
+          <div class="caption">
+            <p><strong><%= post.username %></strong> <%= post.caption %></p>
           </div>
-        <% } %>
+        </div>
 
         <h2>Post ID: <%= post.postID %></h2>
         <p>API URL: <%= post.url %></p>
