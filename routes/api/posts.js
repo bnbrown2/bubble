@@ -62,8 +62,6 @@ router
         const startIndex = (page - 1) * pageSize;
         const endIndex = page * pageSize;
 
-        console.log(timeAgo('2023-11-17T12:34:56'))
-
         try {
             // Database stuff for making a post
             const connectionPool = req.app.get('mariadbPool')
@@ -83,7 +81,7 @@ router
                 photo: account.photo,
                 photo_url: `/image/posts/${account.username}/${account.postID}`,
                 caption: account.caption,
-                timeAgo: timeAgo('2023-11-17T12:34:56'),
+                timeAgo: timeAgo('2023-11-17T11:34:56'),
                 username: account.username,
                 name: account.name,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
