@@ -11,6 +11,7 @@ const config = require('../../config')
 const secretKey = config.secretKey
 
 const { uploadFile, uploadProfilePicture, uploadPost } = require('../../s3')
+const { ConnectContactLens } = require('aws-sdk')
 
 
 
@@ -51,6 +52,7 @@ router
         const startIndex = (page - 1) * pageSize;
         const endIndex = page * pageSize;
 
+        console.log(timeAgo('2023-10-25T12:34:56'))
 
         try {
             // Database stuff for making a post
