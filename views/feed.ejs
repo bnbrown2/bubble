@@ -70,6 +70,22 @@
       text-decoration: none; /* Remove underline */
       color: inherit; /* Use the color defined by the parent element (black in this case) */
     }
+
+    .options {
+      float: right;
+      margin-top: 10px; /* Adjust this value to set the distance between the text and the button */
+    }
+
+    .dots-button {
+      /* Style the button as three dots */
+      width: 30px;
+      height: 30px;
+      border: none;
+      background-color: transparent;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
   </style>
 </head>
 <body>
@@ -79,12 +95,18 @@
     <% rows.forEach(function(post) { %>
       <div class="post">
         <div class="profile-info">
-          <a href="<%= post.html_url %>"> <!-- Link to user's account -->
+          <a href="<%= post.html_url %>">
             <img src="<%= post.profile_picture %>" alt="Profile Picture">
           </a>
-          <a href="<%= post.html_url %>">
-            <p><a href="<%= post.html_url %>"></a><strong><%= post.username %></strong></a> • <%= post.timeAgo %></p>
+          <p>
+            <a href="<%= post.html_url %>"><strong><%= post.username %></strong></a>
+            • <%= post.timeAgo %>
+            <span class="options">
+              <button class="dots-button">•••</button>
+            </span>
+          </p>
         </div>
+        
   
         <% if (post.photo === 1) { %>
           <div class="post-image">
