@@ -93,8 +93,8 @@ router
         const { username, caption } = req.body
         const image = req.file
 
-        if (!username || !image) {
-            console.log('no username or image')
+        if (!username) {
+            console.log('no username')
             return res.status(400).json({ error: 'Missing information from client' })
         }
 
@@ -134,16 +134,15 @@ router
 
             // POTENTIAL BUG: make sure if a post is made in rd2, a post is made in s3.
             // POTENTIAL SOLUTION: just delete the post row if uploadResult says image wasn't uploaded
+            if (image) {
+                const compressedImage = await sharp(image.buffer)
+                    .resize({ width: 450 })
+                    .jpeg({ quality: 75 })
 
-            const compressedImage = await sharp(image.buffer)
-                .resize({ width: 450 })
-                .jpeg({ quality: 75 })
-
-
-
-            const key = `posts/${username}/${postId}`
-            const uploadResult = await uploadPost(compressedImage, key);
-            console.log(uploadResult)
+                const key = `posts/${username}/${postId}`
+                const uploadResult = await uploadPost(compressedImage, key);
+                console.log(uploadResult)
+            }
 
             if (affectedRows > 0) {
                 return res.status(200).json({ message: `Updated ${affectedRows} row`})
