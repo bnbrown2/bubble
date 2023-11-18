@@ -52,7 +52,7 @@ router
         const startIndex = (page - 1) * pageSize;
         const endIndex = page * pageSize;
 
-        console.log(timeAgo('2023-10-25T12:34:56'))
+        console.log(timeAgo('2023-11-17T12:34:56'))
 
         try {
             // Database stuff for making a post
