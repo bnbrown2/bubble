@@ -83,7 +83,7 @@
             <img src="<%= post.profile_picture %>" alt="Profile Picture">
           </a>
           <a href="<%= post.html_url %>">
-            <p><a href="<%= post.html_url %>"></a><strong><%= post.username %></strong></a> : <%=post.timeAgo %></p>
+            <p><a href="<%= post.html_url %>"></a><strong><%= post.username %></strong></a> : <%= post.timeAgo %></p>
         </div>
   
         <% if (post.photo === 1) { %>
