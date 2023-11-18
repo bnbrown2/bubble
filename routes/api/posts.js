@@ -113,12 +113,14 @@ router
                 'SELECT uid FROM accounts WHERE username = ?',
                 [username]
             )
+
+            const hasImage = !!image ?? false
             
             // Create post row.
             let result = []
             result = await connection.execute(
                 'INSERT INTO posts (uid, photo, caption) VALUES (?, ?, ?)',
-                [uid[0].uid, true, caption]
+                [uid[0].uid, hasImage, caption]
             )
             
             // Get postID
