@@ -71,20 +71,6 @@
       color: inherit; /* Use the color defined by the parent element (black in this case) */
     }
 
-    .options {
-      float: right;
-      margin-top: 10px; /* Adjust this value to set the distance between the text and the button */
-    }
-
-    .dots-button {
-      /* Style the button as three dots */
-      width: 30px;
-      height: 30px;
-      border: none;
-      background-color: transparent;
-      font-size: 12px;
-      cursor: pointer;
-    }
 
   </style>
 </head>
@@ -101,9 +87,6 @@
           <p>
             <a href="<%= post.html_url %>"><strong><%= post.username %></strong></a>
             • <%= post.timeAgo %>
-            <span class="options">
-              <button class="dots-button">•••</button>
-            </span>
           </p>
         </div>
         
