@@ -9,6 +9,8 @@ router
     .put( async (req, res) => {
         const { uid, postID } = req.body
 
+        console.log('like route called')
+
         if (!uid || !postID) {
             console.log("missing post id or user id for post like")
             return res.status(400).json({ error: 'User ID or Post ID not provided for post like'})
