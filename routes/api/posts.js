@@ -81,7 +81,7 @@ router
                 photo: account.photo,
                 photo_url: `/image/posts/${account.username}/${account.postID}`,
                 caption: account.caption,
-                timeAgo: timeAgo('2023-11-18T23:14:49.702Z'),
+                timeAgo: timeAgo(account.created_at),
                 username: account.username,
                 name: account.name,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
