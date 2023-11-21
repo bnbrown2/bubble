@@ -146,20 +146,20 @@ router
             console.log(`${affectedRows} rows affected`)
             if (image) {
                 if (!Buffer.isBuffer(image.buffer) || !image.mimetype.includes('image')) {
-                    return res.status(400).json({ error: 'Invalid image data' });
+                    return res.status(400).json({ error: 'Invalid image data' })
                 }
 
                 const compressedImage = await sharp(image.buffer)
-                .resize({ fit: 'inside', width: 450 }) // Adjust the size as needed
+                .resize({ fit: 'inside', width: 450 })
                 .toBuffer()
 
                 if (compressedImage) {
                     // Upload the compressed image to S3
-                    const uploadResult = await uploadProfilePicture(compressedImage, uid[0].uid);
+                    const uploadResult = await uploadProfilePicture(compressedImage, uid[0].uid)
                     console.log(uploadResult);
                 } else {
                     // Handle the case where image compression failed
-                    return res.status(400).json({ error: 'Image compression failed' });
+                    return res.status(400).json({ error: 'Image compression failed' })
                 }
             }
 
