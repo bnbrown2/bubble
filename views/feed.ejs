@@ -76,48 +76,48 @@
 </head>
 <body>
   <div class="feed-wrapper">
-
-  <div class="feed">
-    <% rows.forEach(function(post) { %>
-      <div class="post">
-        <div class="profile-info">
-          <a href="<%= post.html_url %>">
-            <img src="<%= post.profile_picture %>" alt="Profile Picture">
-          </a>
-          <p>
-            <a href="<%= post.html_url %>"><strong><%= post.username %></strong></a>
-            • <%= post.timeAgo %>
-          </p>
-        </div>
-        
-  
-        <% if (post.photo === 1) { %>
-          <div class="post-image">
-            <img src="<%= post.photo_url %>" alt="Post Image">
+    <div class="feed">
+      <% rows.forEach(function(post) { %>
+        <div class="post">
+          <div class="profile-info">
+            <a href="<%= post.html_url %>">
+              <img src="<%= post.profile_picture %>" alt="Profile Picture">
+            </a>
+            <p>
+              <a href="<%= post.html_url %>"><strong><%= post.username %></strong></a>
+              • <%= post.timeAgo %>
+            </p>
           </div>
-        <% } %>
-  
-        <p><a href="<%= post.html_url %>"><strong><%= post.username %></strong></a> <%= post.caption %></p>
-        <form id="likeForm" onsubmit="likePost(event)">
-          <input type="hidden" name="postID" value="<%= post.postID %>">
-          <input type="hidden" name="uid" value="<%= post.uid %>">
-          <button type="submit">LIKE</button>
-        </form>
-        <p><%= post.likeCount %></p>
-        <h2>Post ID: <%= post.postID %></h2>
-      </div>
-    <% }); %>
+
+          <% if (post.photo === 1) { %>
+            <div class="post-image">
+              <img src="<%= post.photo_url %>" alt="Post Image">
+            </div>
+          <% } %>
+
+          <p><a href="<%= post.html_url %>"><strong><%= post.username %></strong></a> <%= post.caption %></p>
+          <!-- Pass post ID to the likePost function -->
+          <form onsubmit="likePost(event, '<%= post.postID %>', '<%= post.uid %>')">
+            <input type="hidden" name="postID" value="<%= post.postID %>">
+            <input type="hidden" name="uid" value="<%= post.uid %>">
+            <button type="submit">LIKE</button>
+          </form>
+          <p><%= post.likeCount %></p>
+          <h2>Post ID: <%= post.postID %></h2>
+        </div>
+      <% }); %>
+    </div>
   </div>
-</div>
 </body>
 
 <script>
-  async function likePost(event) {
+  async function likePost(event, postID, uid) {
     event.preventDefault(); // Prevent default form submission behavior
+
+    const formData = new FormData(event.target); // Get form data from the event target
     
-    const formData = new FormData(document.getElementById("likeForm"));
-    
-    console.log(formData);
+    formData.set('postID', postID); // Set postID based on the parameter
+    formData.set('uid', uid); // Set uid based on the parameter
 
     try {
       const response = await fetch('/api/like', {
@@ -125,11 +125,9 @@
         body: formData
       });
 
-      console.log(formData);
-
       if (response.ok) {
         // Handle success (e.g., update UI to reflect the post is liked)
-        console.log(formData);
+        console.log('Post liked successfully!');
       } else {
         // Handle errors or failure
         console.error('Failed to like post');
@@ -139,5 +137,4 @@
     }
   }
 </script>
-
 </html>
