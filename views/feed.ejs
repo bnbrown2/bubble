@@ -116,14 +116,15 @@
     try {
       const response = await fetch('/api/like', {
         method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
         body: requestBody
       });
 
       if (response.ok) {
-        // Handle success (e.g., update UI to reflect the post is liked)
         console.log('Post liked successfully!');
       } else {
-        // Handle errors or failure
         console.error('Failed to like post');
       }
     } catch (error) {
