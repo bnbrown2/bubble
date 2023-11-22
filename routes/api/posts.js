@@ -75,6 +75,8 @@ router
 
             connection.release()
 
+            console.log(account.likeCount)
+
             const responseArray = result.map((account) => ({
                 postID: account.postID,
                 uid: account.uid,
