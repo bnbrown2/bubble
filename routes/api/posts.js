@@ -75,8 +75,6 @@ router
 
             connection.release()
 
-            console.log(result[0].likeCount)
-
             const responseArray = result.map((account) => ({
                 postID: account.postID,
                 uid: account.uid,
@@ -84,7 +82,7 @@ router
                 photo_url: `/image/posts/${account.username}/${account.postID}`,
                 caption: account.caption,
                 timeAgo: timeAgo(account.created_at),
-                likeCount: account.likeCount,
+                likeCount: Number(account.likeCount),
                 username: account.username,
                 name: account.name,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
