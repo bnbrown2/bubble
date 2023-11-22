@@ -111,19 +111,12 @@
   async function likePost(event, postID, uid) {
     event.preventDefault(); // Prevent default form submission behavior
 
-    const formData = new FormData(event.target); // Get form data from the event target
-
-    console.log(event.target)
-    
-    formData.set('postID', postID); // Set postID based on the parameter
-    formData.set('uid', uid); // Set uid based on the parameter
-
-    console.log(formData)
+    const requestBody = JSON.stringify({ postID, uid });
 
     try {
       const response = await fetch('/api/like', {
         method: 'PUT',
-        body: formData
+        body: reqiestBody
       });
 
       if (response.ok) {
