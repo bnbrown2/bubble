@@ -120,6 +120,8 @@
     formData.set('postID', postID); // Set postID based on the parameter
     formData.set('uid', uid); // Set uid based on the parameter
 
+    console.log(formData)
+
     try {
       const response = await fetch('/api/like', {
         method: 'PUT',
