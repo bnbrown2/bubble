@@ -114,6 +114,8 @@
     event.preventDefault(); // Prevent default form submission behavior
 
     const formData = new FormData(event.target); // Get form data from the event target
+
+    console.log(formData)
     
     formData.set('postID', postID); // Set postID based on the parameter
     formData.set('uid', uid); // Set uid based on the parameter
