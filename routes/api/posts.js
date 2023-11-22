@@ -69,8 +69,26 @@ router
 
             let result = []
             result = await connection.execute(
-                'SELECT posts.*, accounts.username AS username, accounts.name AS name, COALESCE(like_count, 0) AS likeCount FROM posts JOIN accounts ON posts.uid = accounts.uid LEFT JOIN (SELECT postID, COUNT(*) AS like_count FROM likes GROUP BY postID) AS post_likes ON posts.postID = post_likes.postID ORDER BY posts.postID DESC LIMIT ? OFFSET ?',
-                [pageSize, (page-1) * pageSize]
+                `SELECT 
+                    posts.*, 
+                    accounts.username AS username, 
+                    accounts.name AS name, 
+                    COALESCE(like_count, 0) AS likeCount,
+                    CASE WHEN liked_posts.uid IS NOT NULL THEN 1 ELSE 0 END AS hasLiked
+                FROM 
+                    posts 
+                JOIN 
+                    accounts ON posts.uid = accounts.uid 
+                LEFT JOIN 
+                    (SELECT postID, COUNT(*) AS like_count FROM likes GROUP BY postID) AS post_likes 
+                    ON posts.postID = post_likes.postID
+                LEFT JOIN 
+                    (SELECT DISTINCT postID, uid FROM likes WHERE uid = ?) AS liked_posts 
+                    ON posts.postID = liked_posts.postID
+                ORDER BY 
+                    posts.postID DESC 
+                LIMIT ? OFFSET ?;`,
+                [6, pageSize, (page-1) * pageSize]
             )
 
             connection.release()
@@ -83,6 +101,7 @@ router
                 caption: account.caption,
                 timeAgo: timeAgo(account.created_at),
                 likeCount: Number(account.likeCount),
+                hasLiked: account.hasLiked,
                 username: account.username,
                 name: account.name,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
