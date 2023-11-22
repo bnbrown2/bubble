@@ -117,6 +117,8 @@
     
     const formData = new FormData(document.getElementById('likeForm'));
     
+    console.log(formData);
+
     try {
       const response = await fetch('/api/like', {
         method: 'PUT',
