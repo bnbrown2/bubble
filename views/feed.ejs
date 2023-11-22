@@ -96,7 +96,6 @@
           <% } %>
 
           <p><a href="<%= post.html_url %>"><strong><%= post.username %></strong></a> <%= post.caption %></p>
-          <!-- Pass post ID to the likePost function -->
           <form onsubmit="likePost(event, '<%= post.postID %>', '<%= post.uid %>')">
             <input type="hidden" name="postID" value="<%= post.postID %>">
             <input type="hidden" name="uid" value="<%= post.uid %>">
