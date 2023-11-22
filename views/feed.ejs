@@ -101,12 +101,37 @@
         <form action="/api/like" method="PUT">
           <input type="hidden" name="postID" value="<%= post.postID %>">
           <input type="hidden" name="uid" value="<%= post.uid %>">
-          <button type="submit">LIKE</button>
+          <button type="submit" onclick="likePost()">LIKE</button>
         </form>
+        <p><%= post.likeCount %></p>
         <h2>Post ID: <%= post.postID %></h2>
       </div>
     <% }); %>
   </div>
 </div>
 </body>
+
+<script>
+  async function likePost() {
+    const formData = new FormData(document.getElementById('likeForm'));
+    
+    try {
+      const response = await fetch('/api/like', {
+        method: 'PUT',
+        body: formData
+      });
+
+      if (response.ok) {
+        // Handle success (e.g., update UI to reflect the post is liked)
+        console.log('Post liked successfully!');
+      } else {
+        // Handle errors or failure
+        console.error('Failed to like post');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+</script>
+
 </html>

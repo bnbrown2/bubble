@@ -69,7 +69,7 @@ router
 
             let result = []
             result = await connection.execute(
-                'SELECT posts.*, accounts.username AS username, accounts.name AS name FROM posts JOIN accounts ON posts.uid = accounts.uid order by postID DESC limit ? offset ?',
+                'SELECT posts.*, accounts.username AS username, accounts.name AS name, COALESCE(like_count, 0) AS likeCount FROM posts JOIN accounts ON posts.uid = accounts.uid LEFT JOIN (SELECT postID, COUNT(*) AS like_count FROM likes GROUP BY postID) AS post_likes ON posts.postID = post_likes.postID ORDER BY posts.postID DESC LIMIT ? OFFSET ?',
                 [pageSize, (page-1) * pageSize]
             )
 
@@ -82,6 +82,7 @@ router
                 photo_url: `/image/posts/${account.username}/${account.postID}`,
                 caption: account.caption,
                 timeAgo: timeAgo(account.created_at),
+                likeCount: account.likeCount,
                 username: account.username,
                 name: account.name,
                 profile_picture: `/image/profile_picture/u/${account.uid}`,
