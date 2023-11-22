@@ -198,7 +198,7 @@ router
             if (image) {
                 const compressedImage = await sharp(image.buffer)
                     .resize({ width: 450 })
-                    .jpeg({ quality: 75 })
+                    .jpeg({ quality: 85 })
 
                 const key = `posts/${username}/${postId}`
                 const uploadResult = await uploadPost(compressedImage, key);
