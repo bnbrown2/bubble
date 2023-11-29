@@ -41,6 +41,9 @@ router
     .delete( async (req, res) => {
         const { uid, postID } = req.body
 
+        console.log(uid)
+        console.log(postID)
+
         if (!uid || !postID) {
             console.log("missing post id or user id for delete post like")
             return res.status(400).json({ error: 'User ID or Post ID not provided for delete post like'})
@@ -50,14 +53,20 @@ router
             const connectionPool = req.app.get('mariadbPool')
             const connection = await connectionPool.getConnection()
             const result = await connection.execute(
-                '',
-                [uid, postID]
+                'Delete FROM likes WHERE postID = ? AND uid = ?',
+                [postID, uid]
             )
             connection.release()
 
-            res.status(200).json({ message: 'you unliked a post!'})
+            const affectedRows = result ? result.affectedRows : 0
+            if (affectedRows > 0) {
+                return res.status(200).json({ message: 'you unliked a post!'})
+            } else {
+                return res.status(500).json({ error: 'Post could not be unliked'})
+            }
+
         } catch (error) {
-            console.log("error in try block while deleting post like")
+            console.log("error in try block while unliking post")
             return res.status(500).json({ error: 'Internal server error'})
         }
     })

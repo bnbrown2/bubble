@@ -18,34 +18,34 @@ const { ConnectContactLens } = require('aws-sdk')
 
 
 function timeAgo(timestamp) {
-    const previous = new Date(timestamp).getTime();
-    const current = new Date().getTime();
-    const elapsed = current - previous;
+    const previous = new Date(timestamp).getTime()
+    const current = new Date().getTime()
+    const elapsed = current - previous
     
-    const msPerMinute = 60 * 1000;
-    const msPerHour = msPerMinute * 60;
-    const msPerDay = msPerHour * 24;
-    const msPerWeek = msPerDay * 7;
-    const msPerYear = msPerDay * 365;
+    const msPerMinute = 60 * 1000
+    const msPerHour = msPerMinute * 60
+    const msPerDay = msPerHour * 24
+    const msPerWeek = msPerDay * 7
+    const msPerYear = msPerDay * 365
     
     if (elapsed < msPerMinute) {
-        const seconds = Math.round(elapsed / 1000);
-        return seconds + 's';
+        const seconds = Math.round(elapsed / 1000)
+        return seconds + 's'
     } else if (elapsed < msPerHour) {
-        const minutes = Math.round(elapsed / msPerMinute);
-        return minutes + 'm';
+        const minutes = Math.round(elapsed / msPerMinute)
+        return minutes + 'm'
     } else if (elapsed < msPerDay) {
-        const hours = Math.round(elapsed / msPerHour);
-        return hours + 'h';
+        const hours = Math.round(elapsed / msPerHour)
+        return hours + 'h'
     } else if (elapsed < msPerWeek) {
-        const days = Math.round(elapsed / msPerDay);
-        return days + 'd';
+        const days = Math.round(elapsed / msPerDay)
+        return days + 'd'
     } else if (elapsed < msPerYear) {
-        const weeks = Math.round(elapsed / msPerWeek);
-        return weeks + 'w';
+        const weeks = Math.round(elapsed / msPerWeek)
+        return weeks + 'w'
     } else {
-        const years = Math.round(elapsed / msPerYear);
-        return years + 'y';
+        const years = Math.round(elapsed / msPerYear)
+        return years + 'y'
     }
 }
 
@@ -88,7 +88,7 @@ router
                 ORDER BY 
                     posts.postID DESC 
                 LIMIT ? OFFSET ?;`,
-                [6, pageSize, (page-1) * pageSize]
+                [6, pageSize, (page-1) * pageSize]  // The 6 here should be changed to be the userID of the client
             )
 
             connection.release()
@@ -122,23 +122,6 @@ router
             console.error('Error making post feed:', error)
             return res.status(500).json({ error: 'Internal server error'})
         }
-
-
-
-        /*// Generating array of numbers between startIndex and endIndex for testing purposes
-        const integerArray = Array.from({ length: endIndex - startIndex }, (_, index) => startIndex + index)
-
-        const responseArray = ({
-            page,
-            pageSize,
-            startIndex,
-            endIndex,
-            integers: integerArray,
-            message: 'Posts fetched successfully.'
-        })
-
-        // the following code is so the response looks good if client is a browser
-        const acceptHeader = req.get('Accept');*/
 
     })
 
