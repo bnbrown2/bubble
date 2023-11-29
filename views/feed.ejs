@@ -117,7 +117,7 @@
 
     try {
       const response = await fetch('/api/like', {
-        method: 'PUT',
+        method: "<%= post.hasLiked ? 'DELETE' : 'PUT' %>",
         headers: {
           'Content-Type': 'application/json'
         },
