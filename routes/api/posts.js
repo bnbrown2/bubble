@@ -205,6 +205,7 @@ router
     .route('/delete')
     .delete( async (req, res) => {
         // Todo: actually check if the person deleting the post owns the post
+        // Todo: delete the jpeg part of the post when the post gets deleted
         const { postID } = req.body
 
         console.log(postID)
@@ -227,8 +228,10 @@ router
 
             const affectedRows = result ? result.affectedRows : 0
             if (affectedRows > 0) {
+                console.log('you deleted a post!')
                 return res.status(200).json({ message: 'you deleted a post!'})
             } else {
+                console.log('Post could not be deleted')
                 return res.status(500).json({ error: 'Post could not be deleted'})
             }
 
