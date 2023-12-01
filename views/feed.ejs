@@ -103,6 +103,9 @@
           <p><%= post.likeCount %> <%= post.likeCount === 1 ? 'like' : 'likes' %></p>
           <p>Has uid=6 liked this post?: <%= post.hasLiked %></p>
           <h2>Post ID: <%= post.postID %></h2>
+          <form onsubmit="deletePost(event, '<%= post.postID %>')">
+            <button type="submit">DELETE POST</button>
+          </form>
         </div>
       <% }); %>
     </div>
@@ -128,6 +131,30 @@
         console.log('Post liked successfully!');
       } else {
         console.error('Failed to like post');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
+</script>
+
+<script>
+  async function deletePost(event, postID) {
+    const requestBody = JSON.stringify({postID});
+
+    try {
+      const response = await fetch('/api/posts/delete', {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: requestBody
+      });
+
+      if (response.ok) {
+        console.log('Post deleted successfully!');
+      } else {
+        console.error('Failed to delete post');
       }
     } catch (error) {
       console.error('Error:', error);

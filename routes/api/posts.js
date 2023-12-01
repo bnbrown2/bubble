@@ -204,7 +204,38 @@ router
 router
     .route('/delete')
     .delete( async (req, res) => {
-        res.send('hello')
+        // Todo: actually check if the person deleting the post owns the post
+        const { postID } = req.body
+
+        console.log(postID)
+
+        if (!postID) {
+            console.log("missing post id for delete post")
+            return res.status(400).json({ error: 'Post ID not provided for delete post'})
+        }
+
+        try {
+            const connectionPool = req.app.get('mariadbPool')
+            const connection = await connectionPool.getConnection()
+            const result = await connection.execute(
+                `DELETE FROM comments WHERE postID = ?
+                DELETE FROM likes WHERE postID = ? 
+                DELETE FROM posts WHERE postID = ?`,
+                [postID, postID, postID]
+            )
+            connection.release()
+
+            const affectedRows = result ? result.affectedRows : 0
+            if (affectedRows > 0) {
+                return res.status(200).json({ message: 'you deleted a post!'})
+            } else {
+                return res.status(500).json({ error: 'Post could not be deleted'})
+            }
+
+        } catch (error) {
+            console.log("error in try block while unliking post")
+            return res.status(500).json({ error: 'Internal server error'})
+        }
     })
 
 
