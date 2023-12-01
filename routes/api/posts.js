@@ -217,13 +217,15 @@ router
 
         try {
             const connectionPool = req.app.get('mariadbPool')
-            const connection = await connectionPool.getConnection()
-            const result = await connection.execute(
-                `DELETE FROM comments WHERE postID = ?
-                DELETE FROM likes WHERE postID = ? 
-                DELETE FROM posts WHERE postID = ?`,
-                [postID, postID, postID]
-            )
+            const connection = await connectionPool.getConnection()     // POTENTIAL BUG: what happens if only 2 out of 3 queries execute?
+            // Delete comments
+            await connection.execute('DELETE FROM comments WHERE postID = ?', [postID])
+
+            // Delete likes
+            await connection.execute('DELETE FROM likes WHERE postID = ?', [postID])
+
+            // Delete the post
+            const result = await connection.execute('DELETE FROM posts WHERE postID = ?', [postID])
             connection.release()
 
             const affectedRows = result ? result.affectedRows : 0
@@ -236,7 +238,7 @@ router
             }
 
         } catch (error) {
-            console.log("error in try block while unliking post")
+            console.log("error in try block while deleting post")
             return res.status(500).json({ error: 'Internal server error'})
         }
     })
