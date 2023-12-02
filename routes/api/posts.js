@@ -88,7 +88,7 @@ router
                 ORDER BY 
                     posts.postID DESC 
                 LIMIT ? OFFSET ?;`,
-                [6, pageSize, (page-1) * pageSize]  // The 6 here should be changed to be the userID of the client
+                [8, pageSize, (page-1) * pageSize]  // The 6 here should be changed to be the userID of the client
             )
 
             connection.release()
