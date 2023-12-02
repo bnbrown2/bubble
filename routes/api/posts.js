@@ -61,6 +61,10 @@ router
         const pageSize = parseInt(req.query.ps) || 10;
         const startIndex = (page - 1) * pageSize;
         const endIndex = page * pageSize;
+        const { uid } = req.body.uid || 6;
+
+        console.log(`uid of person calling post feed ${uid}`)
+
 
         try {
             // Database stuff for making a post
@@ -88,7 +92,7 @@ router
                 ORDER BY 
                     posts.postID DESC 
                 LIMIT ? OFFSET ?;`,
-                [8, pageSize, (page-1) * pageSize]  // The 6 here should be changed to be the userID of the client
+                [uid, pageSize, (page-1) * pageSize]  // The 6 here should be changed to be the userID of the client
             )
 
             connection.release()
