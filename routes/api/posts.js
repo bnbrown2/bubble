@@ -59,9 +59,7 @@ router
         // Calculate the range of post indexes we need to send to the client
         const page = parseInt(req.query.p) || 1;
         const pageSize = parseInt(req.query.ps) || 10;
-        const startIndex = (page - 1) * pageSize;
-        const endIndex = page * pageSize;
-        const { uid } = req.body.uid || 6;
+        const { uid } = req.body.uid
 
         console.log(`uid of person calling post feed ${uid}`)
 
