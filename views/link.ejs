@@ -44,11 +44,9 @@
     </div>
 
     <script>
-        let downloadCount = 0;
-
         function handleDownload() {
             const downloadLink = document.getElementById('downloadBtn');
-            downloadLink.href = 'Bubble.apk';
+            downloadLink.href = '../Bubble.apk';
             downloadLink.download = 'Bubble.apk';
             downloadLink.click();
         }
