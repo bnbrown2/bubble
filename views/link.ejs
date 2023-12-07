@@ -28,6 +28,7 @@
             text-decoration: none;
             font-size: 18px;
             border-radius: 5px;
+            cursor: pointer;
         }
 
         .download-btn:hover {
@@ -39,7 +40,26 @@
     <div class="container">
         <h1>Welcome to Bubble Social Media App!</h1>
         <p>Stay connected with your friends.</p>
-        <a href="YOUR_ACTUAL_APK_URL_HERE" class="download-btn" download="BubbleApp.apk">Download</a>
+        <a href="#" id="downloadBtn" class="download-btn" onclick="handleDownload()">Download</a>
     </div>
+
+    <script>
+        let downloadCount = 0;
+
+        function handleDownload() {
+            downloadCount++;
+
+            if (downloadCount <= 2) {
+                // Open a new tab for the first two clicks
+                window.open('https://example.com/new-route', '_blank');
+            } else {
+                // Trigger the download on the third click
+                const downloadLink = document.getElementById('downloadBtn');
+                downloadLink.href = 'YOUR_ACTUAL_APK_URL_HERE';
+                downloadLink.download = 'BubbleApp.apk';
+                downloadLink.click();
+            }
+        }
+    </script>
 </body>
 </html>
