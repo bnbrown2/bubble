@@ -2,7 +2,7 @@ const express = require('express')
 const axios = require('axios')
 const router = express.Router()
 
-router.route()
+router.route('/')
     .get( async (req, res) => {
         try {
             res.render('account')
