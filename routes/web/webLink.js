@@ -5,7 +5,7 @@ const router = express.Router()
 router.route('/')
     .get( async (req, res) => {
         try {
-            res.render('account')
+            res.render('link')
         } catch(error) {
             res.status(400).json({'error': 'internal server error'})
         }
