@@ -42,11 +42,10 @@
         <p>Stay connected with your friends.</p>
         <a href="#" id="downloadBtn" class="download-btn" onclick="handleDownload()">Download</a>
     </div>
-
     <script>
         function handleDownload() {
             const downloadLink = document.getElementById('downloadBtn');
-            downloadLink.href = '../Bubble.apk';
+            downloadLink.href = './Bubble.apk';
             downloadLink.download = 'Bubble.apk';
             downloadLink.click();
         }
